@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf035e6d72ac42d4686a757ae3205be8, type: 3}
+  m_Name: POITable
+  m_EditorClassIdentifier: 
+  entries:
+  - UID: 79936525-cccc-4442-ac46-837e1324579d
+    poi: {fileID: 11400000, guid: e1ae5c10e62bcdf4cb366615927ced7c, type: 2}

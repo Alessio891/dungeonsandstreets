@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a31044e4e94af6429a2683a6e03d3dd, type: 3}
+  m_Name: RareSpawner
+  m_EditorClassIdentifier: 
+  UID: 84e4d938-9187-4a27-aa02-fb0639a21f05
+  Name: Blue Spawner
+  Description: Spawns a blue chest
+  sprite: {fileID: 21300118, guid: cc612159e15cf6d499afe8925520d0d3, type: 3}
+  category: consumable
+  Rarity: 0.6
+  Value: 0
+  CanStack: 0
+  UsableInCombat: 1
+  logic: 
+  statsToModify: 
+  amountToModify: 0
+  featureName: chest_rare

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c168bbd5c89b8041af397852e1f0ef9, type: 3}
+  m_Name: Axe
+  m_EditorClassIdentifier: 
+  drops:
+  - item: {fileID: 11400000, guid: 7ffde1b4d95fb3e498093e656d19f66f, type: 2}
+    weight: 0.01
+  - item: {fileID: 11400000, guid: 5fea6712517f4d24fa24bb018809727a, type: 2}
+    weight: 1
+  - item: {fileID: 11400000, guid: 2666a5b591f14dd42933924925721d55, type: 2}
+    weight: 120
+  - item: {fileID: 11400000, guid: 9efbe9aa96d94f74eba7f2839a737492, type: 2}
+    weight: 100
+  - item: {fileID: 11400000, guid: 18579422777d4774db148f3d22f1fe13, type: 2}
+    weight: 80
+  - item: {fileID: 11400000, guid: 3256b855e9ebf7b418342baf3d977298, type: 2}
+    weight: 1
+  - item: {fileID: 11400000, guid: 228b97313f697ea46ac64b6433965ca5, type: 2}
+    weight: 5

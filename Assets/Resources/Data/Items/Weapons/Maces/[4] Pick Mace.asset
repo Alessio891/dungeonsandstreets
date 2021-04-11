@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f80b3c58efbd55478bdb7c9915ae357, type: 3}
+  m_Name: '[4] Pick Mace'
+  m_EditorClassIdentifier: 
+  UID: 025124a7-1676-4df3-9f15-566b827261ca
+  Name: Pick Mace
+  Description: A mace with a pointy end
+  sprite: {fileID: 21300000, guid: 83b5a859c425dc040aaee5831e3f541d, type: 3}
+  category: weapon
+  ItemQuality: 2
+  Value: 300
+  CanStack: 0
+  UsableInCombat: 1
+  logic: equip
+  Damage: 24
+  HitChance: 80
+  CritChance: 35
+  StatUsed: Str
+  MinDamage: 18
+  MaxDamage: 281
+  DexMalus: 19
+  DamageType: bludgeon
+  HitSound: {fileID: 0}
+  MissSound: {fileID: 0}
+  HitParticles: {fileID: 0}
+  refineItemsNeeded: []
+  sockets: []
+  refineGrowth: []

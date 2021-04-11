@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7c199fcb0eaba4e8fef3fd730021cf, type: 3}
+  m_Name: Potion of Strength
+  m_EditorClassIdentifier: 
+  UID: 47bed6ed-927a-4be5-827a-6028219ecd85
+  Name: Potion of Strength
+  Description: Increases your strength by 2
+  sprite: {fileID: 21300000, guid: 6592b916f86b19e428db6f6847c7b6dd, type: 3}
+  category: consumable
+  Rarity: 0.4
+  Value: 50
+  CanStack: 0
+  UsableInCombat: 1
+  logic: 
+  statsToModify: str
+  amountToModify: 2

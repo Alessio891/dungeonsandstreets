@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f80b3c58efbd55478bdb7c9915ae357, type: 3}
+  m_Name: Bow
+  m_EditorClassIdentifier: 
+  UID: f88e1b97-8fc9-4177-876d-2d460bc8dd3b
+  Name: Bow
+  Description: A simple wooden bow
+  sprite: {fileID: 21300000, guid: 5d7061fc7da05ce44add317708ec7215, type: 3}
+  category: weapon
+  Rarity: 0.5
+  Value: 100
+  CanStack: 0
+  UsableInCombat: 1
+  logic: 
+  Damage: 0
+  HitChance: 0
+  CritChance: 0
+  StatUsed: Str
+  MinDamage: 4
+  MaxDamage: 9
+  DexMalus: 4
+  DamageType: neutral
+  refineItemsNeeded: []
+  sockets: []
+  refineGrowth: []

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29f393a507d986e4aa661c261ce36e33, type: 3}
+  m_Name: TestQuest piu rara
+  m_EditorClassIdentifier: 
+  UID: 483f6ae7-6f56-4c89-8d5b-7bed1f874669
+  QuestTitle: Quest Rara
+  QuestDescription: "Questa quest \xE8 un po' piu rara"
+  QuestCompletionText: Hai completato una quest di test
+  SpawnChance: 1
+  Rewards:
+  - rewardType: 0
+    reward: gold
+    amount: 500
+  - rewardType: 0
+    reward: xp
+    amount: 5000
+  Objectives:
+  - ObjectiveTrigger: find_item
+    ObjectiveTriggerData: crystal
+    ObjectiveText: Trova un cristallo
+    ObjectiveProgress: 1
+  - ObjectiveTrigger: insert_item
+    ObjectiveTriggerData: nel_culo
+    ObjectiveText: Infilati il cristallo nel culo
+    ObjectiveProgress: 1
+  Repeatable: 0

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f80b3c58efbd55478bdb7c9915ae357, type: 3}
+  m_Name: '[0] Poor Mace'
+  m_EditorClassIdentifier: 
+  UID: 1449f808-3bbc-486d-938a-65a30b25e98e
+  Name: Poor Mace
+  Description: A mace made from low quality materials
+  sprite: {fileID: 21300000, guid: dfbaf434ef4e3a8498cd013ae90a9b6f, type: 3}
+  category: weapon
+  ItemQuality: 1
+  Value: 1
+  CanStack: 0
+  UsableInCombat: 1
+  logic: equip
+  Damage: 4
+  HitChance: 75
+  CritChance: 15
+  StatUsed: Str
+  MinDamage: 2
+  MaxDamage: 4
+  DexMalus: 4
+  DamageType: bludgeon
+  HitSound: {fileID: 0}
+  MissSound: {fileID: 0}
+  HitParticles: {fileID: 0}
+  refineItemsNeeded:
+  - key: 86051c21-dfcf-4b82-9c99-bc0f62bcf870
+    amount: 1
+  - key: 6ed4b8ff-aad3-41f0-a192-82b112d22bb1
+    amount: 1
+  sockets: []
+  refineGrowth:
+  - stat: Damage
+    growth: 00000000010000000000000000000000000000000000000000000000000000000000000000000000

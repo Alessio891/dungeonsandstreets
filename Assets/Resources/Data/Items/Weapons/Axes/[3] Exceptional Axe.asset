@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f80b3c58efbd55478bdb7c9915ae357, type: 3}
+  m_Name: '[3] Exceptional Axe'
+  m_EditorClassIdentifier: 
+  UID: e1f8cb3e-af71-43aa-84a9-e79194159733
+  Name: Exceptional Axe
+  Description: This axe is made from the best materials!
+  sprite: {fileID: 21300022, guid: cd1de25f604981b439662bd9ea02da82, type: 3}
+  category: weapon
+  ItemQuality: 2
+  Value: 100
+  CanStack: 0
+  UsableInCombat: 1
+  logic: equip
+  Damage: 10
+  HitChance: 100
+  CritChance: 12
+  StatUsed: Str
+  MinDamage: 5
+  MaxDamage: 10
+  DexMalus: 7
+  DamageType: slash
+  HitSound: {fileID: 0}
+  MissSound: {fileID: 0}
+  HitParticles: {fileID: 0}
+  refineItemsNeeded: []
+  sockets: []
+  refineGrowth: []

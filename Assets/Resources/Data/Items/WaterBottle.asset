@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3d7d829de08dd4592f879c98c6833d, type: 3}
+  m_Name: WaterBottle
+  m_EditorClassIdentifier: 
+  UID: 9da34293-d872-49c2-a160-d28a7dd00cef
+  Name: Water Bottle
+  Description: A bottle filled with water, used for crafting potions.
+  sprite: {fileID: 21300000, guid: 5b216d439551abd41aec52363587864d, type: 3}
+  category: special
+  ItemQuality: 1
+  Value: 10
+  CanStack: 1
+  UsableInCombat: 1
+  logic: 

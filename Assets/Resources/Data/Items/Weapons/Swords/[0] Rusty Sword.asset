@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f80b3c58efbd55478bdb7c9915ae357, type: 3}
+  m_Name: '[0] Rusty Sword'
+  m_EditorClassIdentifier: 
+  UID: 503dc218-e594-4a0e-a3f3-8a3c56aac323
+  Name: Rusty Sword
+  Description: A lot of rust on this sword. Be careful.
+  sprite: {fileID: 21300000, guid: 90d8a5129b5528a4790cbcc7c98b059c, type: 3}
+  category: weapon
+  ItemQuality: 4
+  Value: 1
+  CanStack: 0
+  UsableInCombat: 1
+  logic: equip
+  Damage: 2
+  HitChance: 89
+  CritChance: 8
+  StatUsed: Str
+  MinDamage: 1
+  MaxDamage: 2
+  DexMalus: 1
+  DamageType: slash
+  HitSound: {fileID: 0}
+  MissSound: {fileID: 0}
+  HitParticles: {fileID: 0}
+  refineItemsNeeded:
+  - key: 86051c21-dfcf-4b82-9c99-bc0f62bcf870
+    amount: 1
+  sockets: []
+  refineGrowth:
+  - stat: CritChance
+    growth: 0100000003000000050000000700000008000000090000000c0000000f0000001100000014000000

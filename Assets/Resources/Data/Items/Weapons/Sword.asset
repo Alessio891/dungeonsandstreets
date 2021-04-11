@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f80b3c58efbd55478bdb7c9915ae357, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  UID: 4045be90-e9ea-4a6b-90b8-7a11e9c57ca6
+  Name: Sword
+  Description: A simple iron sword.
+  sprite: {fileID: 21300000, guid: 84d69569e482d0e48a229a2337da931a, type: 3}
+  category: weapon
+  Rarity: 0.9
+  Value: 10
+  CanStack: 0
+  UsableInCombat: 1
+  logic: 
+  Damage: 0
+  HitChance: 0
+  CritChance: 0
+  StatUsed: Str
+  MinDamage: 1
+  MaxDamage: 4
+  DexMalus: 2
+  DamageType: neutral
+  refineItemsNeeded: []
+  sockets: []
+  refineGrowth: []

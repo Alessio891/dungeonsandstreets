@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed70e5b21a17084096244569558acb1, type: 3}
+  m_Name: ChestUncommon
+  m_EditorClassIdentifier: 
+  FeatureName: chest_uncommon
+  FeatureType: chest
+  extraData: 
+  isCraftingStation: 0
+  Rarity: 60.8
+  minGoldDrop: 5
+  maxGoldDrop: 10
+  minItemDrops: 1
+  maxItemDrops: 3
+  possibleItems:
+  - item: {fileID: 11400000, guid: 8c5441615def5204682caec311c63f93, type: 2}
+    weight: 80
+  - item: {fileID: 11400000, guid: 0a61dd46a17f4594daf7fe990f702485, type: 2}
+    weight: 100
+  - item: {fileID: 11400000, guid: 2666a5b591f14dd42933924925721d55, type: 2}
+    weight: 100
+  - item: {fileID: 11400000, guid: a8236edf188d51d4a9eeff6b231acaba, type: 2}
+    weight: 200
+  - item: {fileID: 11400000, guid: 822d1b21fb0a8154287c36769ac05d28, type: 2}
+    weight: 90
+  - item: {fileID: 11400000, guid: 595632c7800b35a4cbbdb43019f6c39e, type: 2}
+    weight: 100

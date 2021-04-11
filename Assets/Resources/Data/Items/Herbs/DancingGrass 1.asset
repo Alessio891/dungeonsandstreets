@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3d7d829de08dd4592f879c98c6833d, type: 3}
+  m_Name: DancingGrass 1
+  m_EditorClassIdentifier: 
+  UID: 361d857f-4911-4d45-8d3a-728e2fedb847
+  Name: Liscus
+  Description: A rare flower used in powerful rituals.
+  sprite: {fileID: 21300000, guid: ac8995f61f0c10b4586e6b0ace12479e, type: 3}
+  category: special
+  Rarity: 0
+  Value: 500
+  CanStack: 1
+  UsableInCombat: 0
+  logic: 

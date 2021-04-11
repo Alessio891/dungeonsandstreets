@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f80b3c58efbd55478bdb7c9915ae357, type: 3}
+  m_Name: '[R] Killng Axe'
+  m_EditorClassIdentifier: 
+  UID: fb268d54-4fa7-4230-b409-19bac6353e45
+  Name: Killing Axe
+  Description: This axe was designed to behead people.
+  sprite: {fileID: 21300024, guid: cd1de25f604981b439662bd9ea02da82, type: 3}
+  category: weapon
+  ItemQuality: 3
+  Value: 1
+  CanStack: 0
+  UsableInCombat: 1
+  logic: equip
+  Damage: 18
+  HitChance: 100
+  CritChance: 15
+  StatUsed: Str
+  MinDamage: 8
+  MaxDamage: 14
+  DexMalus: 9
+  DamageType: slash
+  HitSound: {fileID: 0}
+  MissSound: {fileID: 0}
+  HitParticles: {fileID: 0}
+  refineItemsNeeded: []
+  sockets: []
+  refineGrowth: []

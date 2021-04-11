@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63d97cb1cfb3f1b499c24763afa54873, type: 3}
+  m_Name: MeshFactory
+  m_EditorClassIdentifier: 
+  _mapId: mapbox.mapbox-streets-v7
+  Visualizers:
+  - {fileID: 11400000, guid: cf335e4709156a64c8f4b1a5dd471f27, type: 2}
+  - {fileID: 11400000, guid: d6f5ba8c1a1aa9547847041094a886f8, type: 2}
+  - {fileID: 11400000, guid: 966426b7fde5e7d48aa589ed259e3c91, type: 2}
+  - {fileID: 11400000, guid: 2cd70dc34f9c4d94c906117654ef8904, type: 2}
+  - {fileID: 11400000, guid: fd40899affb80964597acb4028fbf75f, type: 2}

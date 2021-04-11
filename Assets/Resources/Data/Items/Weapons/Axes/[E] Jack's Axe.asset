@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f80b3c58efbd55478bdb7c9915ae357, type: 3}
+  m_Name: '[E] Jack''s Axe'
+  m_EditorClassIdentifier: 
+  UID: 37e28b72-6b0d-4cd2-a332-410cfdd7cac4
+  Name: Jack's Axe
+  Description: This axe belonged to Jack, one of the best fighter ever existed
+  sprite: {fileID: 21300000, guid: 79bda889d838e224c95a193f65d5bf79, type: 3}
+  category: weapon
+  ItemQuality: 4
+  Value: 300
+  CanStack: 0
+  UsableInCombat: 1
+  logic: equip
+  Damage: 25
+  HitChance: 100
+  CritChance: 15
+  StatUsed: Str
+  MinDamage: 12
+  MaxDamage: 20
+  DexMalus: 14
+  DamageType: slash
+  HitSound: {fileID: 0}
+  MissSound: {fileID: 0}
+  HitParticles: {fileID: 0}
+  refineItemsNeeded: []
+  sockets: []
+  refineGrowth: []

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c168bbd5c89b8041af397852e1f0ef9, type: 3}
+  m_Name: Maces
+  m_EditorClassIdentifier: 
+  drops:
+  - item: {fileID: 11400000, guid: ae4c06d2777481443912ba37c0e69c83, type: 2}
+    weight: 0.01
+  - item: {fileID: 11400000, guid: b4751b8c904127943bc19dcbce5ab51c, type: 2}
+    weight: 1
+  - item: {fileID: 11400000, guid: ccafc91d72eaf1c4ebfb6187babc4ae0, type: 2}
+    weight: 120
+  - item: {fileID: 11400000, guid: c91b1f1577893f24e97d5489d6afdcb4, type: 2}
+    weight: 100
+  - item: {fileID: 11400000, guid: a079cf3fde9b64643a7ce9a756413afb, type: 2}
+    weight: 80
+  - item: {fileID: 11400000, guid: 6a1b69e8914d1534f9dc0d026f7b67b1, type: 2}
+    weight: 1
+  - item: {fileID: 11400000, guid: 005885384c54ee348b6bfa4f26b70d1e, type: 2}
+    weight: 5

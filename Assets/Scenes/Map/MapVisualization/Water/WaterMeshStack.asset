@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f09effe9db3dd4e9e825475d698ca3, type: 3}
+  m_Name: WaterMeshStack
+  m_EditorClassIdentifier: 
+  MeshModifiers:
+  - {fileID: 11400000, guid: 08c6e603595a60645b90b98a5e1bc0f8, type: 2}
+  - {fileID: 11400000, guid: 7e02a3c6d692e0349a07209223cc72fe, type: 2}
+  - {fileID: 11400000, guid: cae2df04a95df874aa36656f6f41811e, type: 2}
+  GoModifiers:
+  - {fileID: 11400000, guid: 421aaf34ad66a8647a05a68f2c50219d, type: 2}

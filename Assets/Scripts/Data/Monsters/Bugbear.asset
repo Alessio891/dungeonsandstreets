@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6f1537f7a0e5f4cb3bfa38c658a643, type: 3}
+  m_Name: Bugbear
+  m_EditorClassIdentifier: 
+  UID: 37b64b0a-b596-4b8d-839d-0ec7437fa12c
+  ModelPath: CombatModels/Bugbear
+  Type: 1
+  Name: Bugbear
+  MaxHp: 25
+  Str: 7
+  Int: 1
+  Dex: 1
+  BaseDamage: 3
+  Level: 2
+  XP: 15
+  elementalData: []
+  Drops:
+  - item: {fileID: 11400000, guid: 2666a5b591f14dd42933924925721d55, type: 2}
+    weight: 200
+  minGold: 10
+  maxGold: 500

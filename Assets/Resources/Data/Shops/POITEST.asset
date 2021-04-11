@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc16438f13c75eb46b9ea2462d6016cf, type: 3}
+  m_Name: POITEST
+  m_EditorClassIdentifier: 
+  UID: cca70434-3c15-4a34-becb-85d5fb1a39f1
+  POIName: 
+  POIText: 
+  NpcAvatar: {fileID: 0}
+  PossibleQuests: []
+  Type: adventure
+  Categories:
+  - dungeons
+  spawnTags:
+  - cafe
+  - bar
+  - drinking_water
+  prefab: {fileID: 0}
+  Dialogue: {fileID: 0}

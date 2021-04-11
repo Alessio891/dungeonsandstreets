@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f80b3c58efbd55478bdb7c9915ae357, type: 3}
+  m_Name: Miracolous Dagger
+  m_EditorClassIdentifier: 
+  UID: 5b53c616-0b8f-4b8c-a2ec-33a2e7ce8eca
+  Name: Miracolous Dagger
+  Description: This dagger can be rock or can be feather.
+  sprite: {fileID: 21300000, guid: e23a51000bef9fd48a211e6e3fca1863, type: 3}
+  category: weapon
+  ItemQuality: 0
+  Value: 450
+  CanStack: 0
+  UsableInCombat: 1
+  logic: 
+  Damage: 0
+  HitChance: 0
+  CritChance: 0
+  StatUsed: Str
+  MinDamage: 1
+  MaxDamage: 20
+  DexMalus: 12
+  DamageType: physical
+  HitSound: {fileID: 0}
+  MissSound: {fileID: 0}
+  HitParticles: {fileID: 0}
+  refineItemsNeeded: []
+  sockets: []
+  refineGrowth: []

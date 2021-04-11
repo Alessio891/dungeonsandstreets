@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3d7d829de08dd4592f879c98c6833d, type: 3}
+  m_Name: DimLily
+  m_EditorClassIdentifier: 
+  UID: 4aa7e4bd-0448-4fce-affe-c0389b46da20
+  Name: Dim Lily
+  Description: A stinky plant that appears to be effective in healing wounds.
+  sprite: {fileID: 21300000, guid: 70f44ce165e72ef45b4540e717a20375, type: 3}
+  category: special
+  ItemQuality: 0
+  Value: 50
+  CanStack: 1
+  UsableInCombat: 0
+  logic: 

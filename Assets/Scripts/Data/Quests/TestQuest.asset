@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29f393a507d986e4aa661c261ce36e33, type: 3}
+  m_Name: TestQuest
+  m_EditorClassIdentifier: 
+  UID: bc1d8d76-6c5e-492b-8592-acef3bbc490c
+  QuestTitle: 50 xp
+  QuestDescription: This quest gives a lot of XP for doing nothing. For debug purpose
+    only, obviously.
+  QuestCompletionText: Hai completato una quest di test
+  SpawnChance: 1
+  Rewards:
+  - rewardType: 0
+    reward: gold
+    amount: 500
+  - rewardType: 0
+    reward: xp
+    amount: 50
+  Objectives:
+  - ObjectiveTrigger: item_used
+    ObjectiveTriggerData: 6ed4b8ff-aad3-41f0-a192-82b112d22bb1
+    ObjectiveText: Mangia una mela
+    ObjectiveProgress: 1
+  Repeatable: 0

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6f1537f7a0e5f4cb3bfa38c658a643, type: 3}
+  m_Name: Whale
+  m_EditorClassIdentifier: 
+  UID: 1e75dd28-7bcb-4095-9561-35fbad66db2d
+  ModelPath: CombatModels/Whale
+  Type: 1
+  Name: Whale
+  MaxHp: 20
+  Str: 10
+  Int: 2
+  Dex: 5
+  BaseDamage: 10
+  Level: 4
+  XP: 200
+  elementalData:
+  - ElementName: shock
+    amount: 200
+  - ElementName: fire
+    amount: 50
+  - ElementName: water
+    amount: -100
+  Drops:
+  - item: {fileID: 11400000, guid: 92034bb73a1a6af47a32ceb4c0c02be5, type: 2}
+    weight: 1
+  minGold: 50
+  maxGold: 1000

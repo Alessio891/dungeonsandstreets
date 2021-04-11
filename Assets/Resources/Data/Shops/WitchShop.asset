@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e3618848824f4f45b3684d0e25daab0, type: 3}
+  m_Name: WitchShop
+  m_EditorClassIdentifier: 
+  UID: 1ee73fb9-9f2d-4d37-a1b3-d73bee749a4b
+  POIName: 
+  POIText: 
+  NpcAvatar: {fileID: 0}
+  PossibleQuests: []
+  Type: shop
+  Categories:
+  - alchemist
+  - food
+  spawnTags:
+  - pharmacy
+  prefab: {fileID: 114017383817760334, guid: db2607631aae1a044a8e567ad1775171, type: 3}
+  Dialogue: {fileID: 0}
+  entries:
+  - Item: 6ed4b8ff-aad3-41f0-a192-82b112d22bb1
+    minPrice: 1
+    maxPrice: 5
+    minAmount: 1
+    maxAmount: 5
+    weight: 130
+  - Item: 49c67ce2-fcb7-451f-8f65-e5e4c0783893
+    minPrice: 30
+    maxPrice: 50
+    minAmount: 10
+    maxAmount: 20
+    weight: 150
+  - Item: 86051c21-dfcf-4b82-9c99-bc0f62bcf870
+    minPrice: 50
+    maxPrice: 150
+    minAmount: 1
+    maxAmount: 1
+    weight: 80
+  - Item: 49c67ce2-fcb7-451f-8f65-e5e4c0783893
+    minPrice: 30
+    maxPrice: 50
+    minAmount: 10
+    maxAmount: 20
+    weight: 1
+  maxItems: 5

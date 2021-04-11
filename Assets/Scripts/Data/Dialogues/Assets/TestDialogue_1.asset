@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753086d56455aed43a0f061a407b456b, type: 3}
+  m_Name: TestDialogue_1
+  m_EditorClassIdentifier: 
+  UID: 0d7a824f-faca-4292-8fb7-d9ec4d50ae40
+  DialogueTitle: Test Dialogue
+  DialogueText: Testo di prova
+  Responses:
+  - Text: Ciao
+    Actions:
+    - action: 2
+      data1: XP
+      data2: 1
+    - action: 0
+      data1: 0d7a824f-faca-4292-8fb7-d9ec4d50ae40
+      data2: 1

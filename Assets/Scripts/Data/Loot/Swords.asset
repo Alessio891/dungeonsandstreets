@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c168bbd5c89b8041af397852e1f0ef9, type: 3}
+  m_Name: Swords
+  m_EditorClassIdentifier: 
+  drops:
+  - item: {fileID: 11400000, guid: 5d9fbe400ca701d45a54a56841048a29, type: 2}
+    weight: 0.01
+  - item: {fileID: 11400000, guid: 4a5df32fabe6f8a4e95bc77fc8f19b5d, type: 2}
+    weight: 1
+  - item: {fileID: 11400000, guid: 10ab2b34182a47a4aae352caa4de2aa1, type: 2}
+    weight: 120
+  - item: {fileID: 11400000, guid: 34d1c7d52ed2c9a4384827a63cf1df29, type: 2}
+    weight: 100
+  - item: {fileID: 11400000, guid: ba49f5754aec2674590d6ab618393eb8, type: 2}
+    weight: 80
+  - item: {fileID: 11400000, guid: 68b80ddca521a3d4cb834a5c948cab49, type: 2}
+    weight: 1
+  - item: {fileID: 11400000, guid: f0aa9251cc916cf46afb4e939fff59c5, type: 2}
+    weight: 5

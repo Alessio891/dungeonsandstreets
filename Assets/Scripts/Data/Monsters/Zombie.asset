@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6f1537f7a0e5f4cb3bfa38c658a643, type: 3}
+  m_Name: Zombie
+  m_EditorClassIdentifier: 
+  UID: 7c85fb79-ad4a-4582-8bf6-4d3d4996054b
+  ModelPath: CombatModels/Zombie
+  Type: 2
+  Name: Zombie
+  MaxHp: 8
+  Str: 1
+  Int: 1
+  Dex: 1
+  BaseDamage: 1
+  Level: 1
+  XP: 15
+  elementalData:
+  - ElementName: fire
+    amount: 150
+  - ElementName: holy
+    amount: 200
+  - ElementName: water
+    amount: 0
+  Drops:
+  - item: {fileID: 11400000, guid: 0a61dd46a17f4594daf7fe990f702485, type: 2}
+    weight: 0
+  - item: {fileID: 11400000, guid: 10ab2b34182a47a4aae352caa4de2aa1, type: 2}
+    weight: 200
+  - item: {fileID: 11400000, guid: 9efbe9aa96d94f74eba7f2839a737492, type: 2}
+    weight: 200
+  - item: {fileID: 11400000, guid: 34d1c7d52ed2c9a4384827a63cf1df29, type: 2}
+    weight: 0
+  - item: {fileID: 11400000, guid: ccafc91d72eaf1c4ebfb6187babc4ae0, type: 2}
+    weight: 0
+  minGold: 1
+  maxGold: 50

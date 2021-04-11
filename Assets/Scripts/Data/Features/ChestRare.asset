@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed70e5b21a17084096244569558acb1, type: 3}
+  m_Name: ChestRare
+  m_EditorClassIdentifier: 
+  FeatureName: chest_rare
+  FeatureType: chest
+  extraData: 
+  isCraftingStation: 0
+  Rarity: 10
+  minGoldDrop: 20
+  maxGoldDrop: 50
+  minItemDrops: 1
+  maxItemDrops: 3
+  possibleItems:
+  - item: {fileID: 11400000, guid: 10ab2b34182a47a4aae352caa4de2aa1, type: 2}
+    weight: 120
+  - item: {fileID: 11400000, guid: 2666a5b591f14dd42933924925721d55, type: 2}
+    weight: 120
+  - item: {fileID: 11400000, guid: 9efbe9aa96d94f74eba7f2839a737492, type: 2}
+    weight: 100
+  - item: {fileID: 11400000, guid: 595632c7800b35a4cbbdb43019f6c39e, type: 2}
+    weight: 150

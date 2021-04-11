@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc16438f13c75eb46b9ea2462d6016cf, type: 3}
+  m_Name: POI
+  m_EditorClassIdentifier: 
+  UID: 79936525-cccc-4442-ac46-837e1324579d
+  POIName: Testing
+  POIText: "Questo \xE8 un POI test"
+  NpcAvatar: {fileID: 6878164931608531021, guid: 4e3cf793a359c6a49adc81caa81b344d,
+    type: 3}
+  PossibleQuests:
+  - {fileID: 11400000, guid: a97651028bf6ff244ac36295dd928923, type: 2}
+  - {fileID: 11400000, guid: 09f057669427241448be8b80865273c7, type: 2}
+  Type: adventure
+  Categories:
+  - raid
+  spawnTags: []
+  prefab: {fileID: 575799413887303941, guid: fe4259cac8d0bd64797aaeaf298900fb, type: 3}
+  Dialogue: {fileID: 11400000, guid: 489546cd732ddd74280364e442b28caa, type: 2}
