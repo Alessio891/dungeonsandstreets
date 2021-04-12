@@ -208,6 +208,7 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 				style = _properties.optimizedStyle
 			};
 			DataFetcher.FetchData(parameters);
+            
 		}
 
 		protected override void OnUnregistered(UnityTile tile)

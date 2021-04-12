@@ -297,7 +297,7 @@ namespace Mapbox.Examples.LocationProvider
 		{
 			timer += Time.deltaTime;
 			if (timer > updateEvery) {
-
+               // m.UpdateMap();
 				Dictionary<string, object> values = new Dictionary<string, object> ();
 				
 				values.Add ("x", LocationProvider.CurrentLocation.LatitudeLongitude.x.ToStringEx());
