@@ -79,28 +79,7 @@ public class UIInventory : MonoBehaviour {
 		Resources.UnloadUnusedAssets ();
 	}
 
-	public void ItemAdded(BaseItem item, int amount)
-	{
-		bool found = false;
-		foreach (UIItemEntry e in currentEntries) {
-			if (e.item.ItemID == item.ItemID) {
-				int a = 0;
-				int.TryParse (e.amount.text, out a);
-				e.amount.text = (a + amount).ToString ();
-				found = true;
-				break;
-			}
-		}
-		if (!found) {
-			UIItemEntry e = GameObject.Instantiate<UIItemEntry>(entry);
-			e.transform.SetParent(grid.transform);
-			e.transform.localScale = Vector3.one;
-			e.item = item;
-			e.amount.text = amount.ToString ();
-			e.Init();
-			currentEntries.Add(e);
-		}
-	}
+	
 	public void RemoveItem(BaseItem item, int amount)
 	{
 		bool remove = false;
@@ -161,8 +140,21 @@ public class UIInventory : MonoBehaviour {
                 e.transform.localScale = Vector3.one;
                 e.item = i;
                 e.itemData = (Dictionary<string, object>)item["data"];
+                ItemData itemData = d;
+
+                e.OnClick = () =>
+                {
+
+                    if (detailsGroup.currentSelected != null && detailsGroup.currentSelected != e)
+                        detailsGroup.currentSelected.Unselect();
+                    e.Select();
+                    detailsGroup.currentSelected = e;
+                    detailsGroup.currentItemUID = itemData.UID;
+                    currentEntry = e;
+                    ActionMenu.Show();
+                };
                 //Debug.Log("Data for " + i.Name + " is " + e.itemData);
-                
+
                 e.amount.text = amount.ToString();
                 if (PlayerEquip.instance.equip != null)
                 {
@@ -189,8 +181,19 @@ public class UIInventory : MonoBehaviour {
                 e.transform.localScale = Vector3.one;
                 e.item = i;
                 e.itemData = (Dictionary<string, object>)item["data"];
-                e.amount.text = "1";
-             //   Debug.Log("Data for " + i.Name + " is " + e.itemData);
+                e.amount.text = "1";                
+                e.OnClick = () =>
+                {
+
+                    if (detailsGroup.currentSelected != null && detailsGroup.currentSelected != e)
+                        detailsGroup.currentSelected.Unselect();
+                    e.Select();
+                    detailsGroup.currentSelected = e;
+                    detailsGroup.currentItemUID = e.itemData["UID"].ToString();
+                    currentEntry = e;
+                    ActionMenu.Show();
+                };
+                //   Debug.Log("Data for " + i.Name + " is " + e.itemData);
                 if (PlayerEquip.instance.equip != null)
                 {
                     if (!equipped)
@@ -272,6 +275,20 @@ public class UIInventory : MonoBehaviour {
 			e.amount.text = s.amount.ToString ();
             e.itemData = (Dictionary<string, object>)MiniJSON.Json.Deserialize(s.data);
 			e.Init ();
+
+            ItemData itemData = s;
+
+            e.OnClick = () =>
+            {
+                
+                if (detailsGroup.currentSelected != null && detailsGroup.currentSelected != e)
+                    detailsGroup.currentSelected.Unselect();
+                e.Select();
+                detailsGroup.currentSelected = e;
+                detailsGroup.currentItemUID = itemData.UID;
+                currentEntry = e;
+                ActionMenu.Show();
+            };
             
             foreach(KeyValuePair<string, EquipData> pair in PlayerEquip.instance.equip)
             {

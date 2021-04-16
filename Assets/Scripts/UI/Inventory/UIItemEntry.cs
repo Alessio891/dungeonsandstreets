@@ -13,7 +13,9 @@ public class UIItemEntry : MonoBehaviour {
     public Text NameText;
     public Image equippedImg;
     public Image selectedBG;
-    public Image unselectedBG; 
+    public Image unselectedBG;
+
+    public System.Action OnClick;
     
 	// Use this for initialization
 	void Start () {
@@ -27,15 +29,11 @@ public class UIItemEntry : MonoBehaviour {
 
 	public void Click()
 	{
-        UIInventoryDetails d = UIInventory.instance.detailsGroup;
-        if (d.currentSelected != null && d.currentSelected != this)
-            d.currentSelected.Unselect();
-        Select();
-        d.currentSelected = this;
-        d.currentItemUID = itemData["UID"].ToString();
-        Debug.Log("SELECTED UID " + d.currentItemUID);        
-        UIInventory.instance.currentEntry = this;
-        UIInventory.instance.ActionMenu.Show();
+        if (OnClick != null)
+        {
+            OnClick();
+        }
+       
 		//UIInventory.instance.detailsGroup.Show (item, itemData);
 	}
 
@@ -53,6 +51,7 @@ public class UIItemEntry : MonoBehaviour {
 	{
 		sprite.sprite = item.sprite;
         NameText.text = item.Name;
+        amount.text = "";
         Unselect();		
 	}
 }

@@ -23,8 +23,10 @@ public class UIEquipDetails : MonoBehaviour
     public void Clear()
     {
         ItemName.text = ItemValue.text = ItemEffect.text = "";
-        SwapButton.SetActive(false);
-        UnequipButton.SetActive(false);
+        if (SwapButton != null)
+            SwapButton.SetActive(false);
+        if (UnequipButton != null)
+            UnequipButton.SetActive(false);
         foreach (Text t in CurrentModTexts)
             Destroy(t.gameObject);
         foreach (Image i in CurrentSockets)
@@ -42,8 +44,10 @@ public class UIEquipDetails : MonoBehaviour
         Clear();
         currentItem = item;
         ItemName.text = item.Name;
-        SwapButton.SetActive(true);
-        UnequipButton.SetActive(true);
+        if (SwapButton != null)
+            SwapButton.SetActive(true);
+        if (UnequipButton != null)
+            UnequipButton.SetActive(true);
         if (item is BaseWeapon)
             ItemValue.text = "Damage: " + (item as BaseWeapon).MinDamage.ToString() + "-" + (item as BaseWeapon).MaxDamage.ToString();
         else if (item is BaseArmor)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f3f1f1d4ad1fc4eaca676c08e06802, type: 3}
   m_Name: RarityTest 3
   m_EditorClassIdentifier: 
-  ItemID: test_armor_leg
+  ItemID: armor_test
   Name: Armor Test Legendaria
   Description: Test con rarita 0.6
   sprite: {fileID: 21300000, guid: b8fb302c5768e334ca82005f50e58121, type: 3}

@@ -21,3 +21,5 @@ MonoBehaviour:
     path: Data/Items/Special/SpiritRecombiner
   - ID: consumale_apple
     path: Data/Items/Consumables/Apple
+  - ID: armor_test
+    path: Data/Items/Debug/RarityTest 3

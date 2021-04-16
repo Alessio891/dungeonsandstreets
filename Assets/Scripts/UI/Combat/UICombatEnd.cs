@@ -8,6 +8,15 @@ public class UICombatEnd : MonoBehaviour
 {
     CanvasGroup group;
 
+    public Text XPValue, GoldValue;
+    public GridLayoutGroup ItemGrid;
+
+    public UIItemEntry ItemEntryPrefab;
+    public UIEquipDetails Details;
+
+    public float CounterDelayTime = 0.1f;
+    public float FadeInSpeed = 2.5f;
+
     public static UICombatEnd instance;
     private void Awake()
     {
@@ -15,30 +24,6 @@ public class UICombatEnd : MonoBehaviour
         group = GetComponent<CanvasGroup>();
     }
 
-    public Transform ItemsList;
-    public Transform ItemRolls;
-    public Transform XPReward;
-    public Transform RollResults;
-
-    public Color Uncommon;
-    public Color Rare;
-    public Color Epic;
-    public Color Legendary;
-
-    public ScrollSnap RollSnap;
-
-    public PopupQuestRewardItemEntry itemPrefab;
-    public UICombatXPEntry xpPrefab;
-    public UIItemRollEntry rollPrefab;
-    public UIRollResultEntry resultPrefab;
-
-    List<PopupQuestRewardItemEntry> itemEntries = new List<PopupQuestRewardItemEntry>();
-    List<UIItemRollEntry> rollEntries = new List<UIItemRollEntry>();
-    List<UICombatXPEntry> xpEntries = new List<UICombatXPEntry>();
-    List<UIRollResultEntry> resultEntries = new List<UIRollResultEntry>();
-
-    bool resultsReceived = false;
-    List<Dictionary<string, object>> results;
 
     private void Start()
     {
@@ -48,9 +33,12 @@ public class UICombatEnd : MonoBehaviour
     public void Show()
     {
         SoundManager.instance.ChangeBGM(SoundManager.instance.BattleWonMusic, true);
+        Details.Clear();
         group.alpha = 1.0f;
         group.interactable = true;
         group.blocksRaycasts = true;
+        XPValue.text = GoldValue.text = "0";
+        XPValue.color = GoldValue.color = new Color(1, 1, 1, 0);
     }
     public void Hide()
     {
@@ -59,163 +47,110 @@ public class UICombatEnd : MonoBehaviour
         group.blocksRaycasts = false;
     }
 
-    public void updateRollSize(float value)
-    {
-        Vector2 size = (ItemRolls.parent.transform as RectTransform).sizeDelta;
-        size.y = value;
-        (ItemRolls.parent.transform as RectTransform).sizeDelta = size;
-    }
-
-    IEnumerator showRollResults()
-    {
-        foreach(UIItemRollEntry e in rollEntries)
-        {
-            e.gameObject.SetActive(false);
-        }
-        RollResults.gameObject.SetActive(true);
-        iTween.ValueTo(gameObject, iTween.Hash("from", 60.0f, "to", 170.0f, "time", 0.4f, "easeType", "easeOutSine", "onupdate", "updateRollSize"));
-        yield return new WaitForSeconds(0.4f);
-
-        Bridge.GET(Bridge.url + "RollResults?user=" + PlayerPrefs.GetString("user") + "&combatId=" + CombatManager.instance.combatData.UID, (r) =>
-        {
-            Debug.Log("RESULT RESPONSE: " + r);
-            ServerResponse resp = new ServerResponse(r);
-            if (resp.status == ServerResponse.ResultType.Success)
-            {
-                List<Dictionary<string,object>> resultsRaw = resp.GetIncomingList();
-                results = resultsRaw;
-                resultsReceived = true;
-            }
-        });
-        while (!resultsReceived)
-            yield return null;
-        bool allAssigned = true;
-        foreach (Dictionary<string, object> result in results)
-        {
-            UIRollResultEntry e = GameObject.Instantiate<UIRollResultEntry>(resultPrefab);
-            if (!(bool)result["allRolled"])
-            {
-                allAssigned = false;
-            }
-            e.transform.SetParent(RollResults);
-            e.transform.localPosition = Vector3.zero;
-            e.transform.localScale = Vector3.one;
-            e.Init(result);
-            resultEntries.Add(e);
-            yield return StartCoroutine(e.Show());
-        }
-        yield return new WaitForSeconds(3.0f);
-        resultsReceived = false;
-        
-        while (!allAssigned)
-        {
-            Debug.Log("Checking roll status");
-            Bridge.GET(Bridge.url + "RollResults?user=" + PlayerPrefs.GetString("user") + "&combatId=" + CombatManager.instance.combatData.UID, (r) =>
-            {
-                ServerResponse resp = new ServerResponse(r);
-                if (resp.status == ServerResponse.ResultType.Success)
-                {
-                    List<Dictionary<string, object>> resultsRaw = resp.GetIncomingList();
-                    results = resultsRaw;
-                    resultsReceived = true;
-                }
-            });
-            while (!resultsReceived)
-                yield return null;
-            resultsReceived = false;
-            allAssigned = true;
-            for (int i = 0; i < results.Count; i++)
-            {
-                resultEntries[i].UpdateData(results[i]);
-                if (!(bool)results[i]["allRolled"])
-                    allAssigned = false;
-            }
-            yield return new WaitForSeconds(3.0f);
-        }
-
-        Debug.Log("EVERYONE ROLLED!!! GG!");
-    }
-
-    public void NextRoll(UIItemRollEntry lastPage)
-    {
-        if (lastPage.index == rollEntries.Count-1)
-        {
-            StartCoroutine(showRollResults());
-            Debug.Log("DONE ALL ROLL");
-        }
-        else
-            RollSnap.NextScreen();
-    }    
-
     public void Load(Dictionary<string, object> endData)
+    {
+        StartCoroutine(AnimationRoutine(endData));
+    }
+
+    IEnumerator AnimationRoutine(Dictionary<string, object> endData)
     {
         Dictionary<string, object> actionResult = (Dictionary<string, object>)endData["actionResult"];
 
-        Dictionary<string, object> items = (Dictionary<string, object>)actionResult["AssignedItems"];
-        List<object> rolls = (List<object>)actionResult["Rolls"];
-        List<object> xp = (List<object>)actionResult["ExperienceGain"];
+        
+        int xp = int.Parse(actionResult["ExperienceGain"].ToString());
+        int gold = int.Parse(actionResult["Gold"].ToString());
 
-        foreach (PopupQuestRewardItemEntry e in itemEntries)
-            e.Destroy(e.gameObject);
-        foreach (UIItemRollEntry e in rollEntries)
-            e.Destroy(e.gameObject);
-        foreach (UICombatXPEntry e in xpEntries)
-            e.Destroy(e.gameObject);
-        foreach (KeyValuePair<string, object> i in items)
+        float alpha = 0;
+        while(alpha <= 1)
         {
-            PopupQuestRewardItemEntry e = GameObject.Instantiate<PopupQuestRewardItemEntry>(itemPrefab);
-            e.transform.SetParent(ItemsList);
-            e.transform.localPosition = Vector3.zero;
-            e.transform.localScale = Vector3.one;
-            BaseItem item = Resources.Load<BaseItem>(Registry.assets.items[i.Key]);
-            e.Init(item, 1);
-            itemEntries.Add(e);
+            alpha += FadeInSpeed * Time.deltaTime;
+            XPValue.color = new Color(1, 1, 1, alpha);
+            yield return new WaitForEndOfFrame();
         }
-
-        int index = 0;
-        foreach (object roll in (List<object>)actionResult["Rolls"])
+        int counter = 0;
+        while(counter <= xp)
         {
-            Dictionary<string, object> rollData = (Dictionary<string, object>)roll;
-            UIItemRollEntry e = GameObject.Instantiate<UIItemRollEntry>(rollPrefab);
-            e.index = index;
-            index++;
-            e.transform.SetParent(ItemRolls);
-            e.transform.localPosition = Vector3.zero;
-            e.transform.localScale = Vector3.one;
-            BaseItem item = Resources.Load<BaseItem>(Registry.assets.items[rollData["itemId"].ToString()]);
-            e.ItemName.text = item.Name;
-            e.ItemIcon.sprite = item.sprite;
-            switch(item.ItemQuality)
+            XPValue.text = counter.ToString();
+            counter += 10;
+            if (counter > xp)
             {
-                case BaseItem.Quality.Uncommon:
-                    e.BG.color = Uncommon;
-                    break;
-                case BaseItem.Quality.Rare:
-                    e.BG.color = Rare;
-                    break;
-                case BaseItem.Quality.Epic:
-                    e.BG.color = Epic;
-                    break;
-                case BaseItem.Quality.Legendary:
-                    e.BG.color = Legendary;
-                    break;
+                counter = xp;
+                XPValue.text = counter.ToString();
+                break;
             }
-            rollEntries.Add(e);
-            
+            yield return new WaitForEndOfFrame();
         }
 
-        foreach(object o in xp)
+        alpha = 0;
+        counter = 0;
+        while (alpha <= 1)
         {
-            string d = (string)o;
-            string[] xpData = d.Split(':');
-            UICombatXPEntry e = GameObject.Instantiate<UICombatXPEntry>(xpPrefab);
-            e.transform.SetParent(XPReward);
-            e.transform.localPosition = Vector3.zero;
-            e.transform.localScale = Vector3.one;
-            e.What.text = xpData[0];
-            e.XPAmount.text = xpData[1]+"xp";
-            xpEntries.Add(e);
+            alpha += FadeInSpeed * Time.deltaTime;
+            GoldValue.color = new Color(1, 1, 1, alpha);
+            yield return new WaitForEndOfFrame();
         }
+       
+        while (counter <= gold)
+        {
+            GoldValue.text = counter.ToString();
+            counter += 10;
+            if (counter > gold)
+            {
+                counter = gold;
+                GoldValue.text = counter.ToString();
+                break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        List<object> DroppedItems = (List<object>)actionResult["DroppedItems"];
+
+        foreach(Dictionary<string, object> item in DroppedItems)
+        {
+            UIItemEntry e = GameObject.Instantiate<UIItemEntry>(ItemEntryPrefab);
+            e.transform.SetParent(ItemGrid.transform);
+            e.transform.localScale = Vector3.one;
+
+            BaseItem itemInstance = null;
+            if (item["Category"].ToString().ToLower() == "armor")
+            {
+                itemInstance = new BaseArmor();
+                (itemInstance as BaseArmor).Deserialize(item);
+            } else if (item["Category"].ToString().ToLower() == "weapon")
+            {
+                itemInstance = new BaseWeapon();
+                (itemInstance as BaseWeapon).Deserialize(item);
+            } else if (item["Category"].ToString().ToLower() == "consumable")
+            {
+                itemInstance = new BaseConsumable();
+                (itemInstance as BaseConsumable).Deserialize(item);
+            } else
+            {
+                itemInstance = new BaseItem();
+                itemInstance.Deserialize(item);
+            }
+            string itemId = item["ItemID"].ToString();
+            BaseItem template = Resources.Load<BaseItem>(Registry.assets.items[itemId]);
+            itemInstance.sprite = template.sprite;
+            e.item = itemInstance;
+
+            e.OnClick = () =>
+            {
+                Details.LoadItem(e.item as BaseEquippable);
+            };
+
+            e.Init();
+            CanvasGroup cg = e.gameObject.AddComponent<CanvasGroup>();
+            cg.alpha = 0;
+            while(cg.alpha<1)
+            {
+                cg.alpha += 1.5f * Time.deltaTime;
+                if (cg.alpha > 0.9f)
+                    break;
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
 
     }
 
