@@ -208,6 +208,25 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 				style = _properties.optimizedStyle
 			};
 			DataFetcher.FetchData(parameters);
+
+            var bounds = tile.MeshRenderer.bounds;
+            var center = tile.transform.position + bounds.center;
+            center.y = 0;
+
+            var area = (int)(bounds.size.x * bounds.size.z);
+
+            for(int i = 0; i < 10; i++)
+            {
+                var x = UnityEngine.Random.Range(-bounds.extents.x, bounds.extents.x);
+                var z = UnityEngine.Random.Range(-bounds.extents.z, bounds.extents.z);
+                var ray = new Ray(center + new Vector3(x, 100, z), Vector3.down * 2000);
+                GameObject grass = GameObject.Instantiate(GameManager.instance.GrassTest);
+                grass.transform.position = new Vector3(x, 0, z);
+                
+
+            }
+
+           
             
 		}
 

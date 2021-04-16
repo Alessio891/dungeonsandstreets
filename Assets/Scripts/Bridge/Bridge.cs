@@ -228,7 +228,7 @@ public static class Bridge {
 	public static void UpdateItemOnServer(BaseItem item, System.Action<string> callback = null)
 	{
 		Dictionary<string, object> data = new Dictionary<string, object> ();
-		data.Add ("uid", item.UID);
+		data.Add ("uid", item.ItemID);
 		data.Add ("data", MiniJSON.Json.Serialize (item.Serialize ()));
 		
 		POST (url + "UploadItem", data, callback);
@@ -249,7 +249,7 @@ public static class Bridge {
 
     public static void DownloadItemFromServer(BaseItem item, System.Action<string> callback = null)
 	{
-		GET (url + "DownloadItem?uid=" + item.UID, callback);
+		GET (url + "DownloadItem?uid=" + item.ItemID, callback);
 	}
 
 	public static Data ParseResponse(string response)

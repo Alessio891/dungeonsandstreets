@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 public class ItemEditor : EditorWindow {
     public BaseItem currentItem;
     public string[] categories = new string[4] { "consumable", "weapon", "armor", "special" };
     Vector2 scrollPos;
     int catIndex = 0;
+    int typeSelected = 0;
 
     [MenuItem("BattleFox/Item Editor")]
     public static void open()
@@ -32,12 +34,39 @@ public class ItemEditor : EditorWindow {
 
         if (currentItem == null)
         {
+            
             if (GUILayout.Button("Create", GUILayout.ExpandWidth(false)))
             {
-                BaseItem item = new BaseItem();
-                AssetDatabase.CreateAsset(item, "Assets/Resources/Data/Items/NewItem.asset");
-                Selection.activeObject = item;
+
+                EditorInputDialog.Show((name) => {
+                    this.Focus();
+                    BaseItem item = null;
+                    switch(typeSelected)
+                    {
+                        case 0:
+                            item = new BaseConsumable();
+                            item.category = "Consumable";
+                            break;
+                        case 1:
+                            item = new BaseWeapon();
+                            item.category = "Weapon";
+                            break;
+                        case 2:
+                            item = new BaseArmor();
+                            item.category = "Armor";
+                            break;
+                        case 3:
+                            item = new BaseItem();
+                            item.category = "Special";
+                            break;
+                    }
+                    item.Name = name;
+                    item.ItemID = name.Replace(" ", "_");
+                    AssetDatabase.CreateAsset(item, "Assets/Resources/Data/Items/"+name+".asset");
+                    Selection.activeObject = item;
+                }, "NewItem", () => this.Focus() );
             }
+            typeSelected = EditorGUILayout.Popup(typeSelected, new string[] { "Consumable", "Weapon", "Armor", "Special" });
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
         }
@@ -47,11 +76,11 @@ public class ItemEditor : EditorWindow {
             {
                 if (EditorUtility.DisplayDialog("Deleting", "Are you sure you want to delete " + currentItem.Name + "?", "I am"))
                 {
-                    if (Registry.assets.items.IsPresent(currentItem.UID))
+                    if (Registry.assets.items.IsPresent(currentItem.ItemID))
                     {
                         if (EditorUtility.DisplayDialog("Item Table", "This item was registered in the Registry. Should i remove it?", "Yes", "No"))
                         {
-                            Registry.assets.items.Remove(currentItem.UID);
+                            Registry.assets.items.Remove(currentItem.ItemID);
                         }
                     }
                     AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(currentItem));
@@ -84,22 +113,22 @@ public class ItemEditor : EditorWindow {
             }
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
-            GUI.enabled = false;
+            
             EditorGUILayout.BeginHorizontal();
-            currentItem.UID = EditorGUILayout.TextField("UID:", currentItem.UID);
-            GUI.enabled = true;
+            currentItem.ItemID = EditorGUILayout.TextField("UID:", currentItem.ItemID);
+            
             if (GUILayout.Button("Generate UID", GUILayout.ExpandWidth(false)))
             {
                 currentItem.GenerateUID();
             }
             EditorGUILayout.EndHorizontal();
-            if (!Registry.assets.items.IsPresent(currentItem.UID))
+            if (!Registry.assets.items.IsPresent(currentItem.ItemID))
             {
                 EditorGUILayout.HelpBox("This item is not registered in the items table! Would you like to add it now?", MessageType.Warning);
                 if (GUILayout.Button("Add It!", GUILayout.ExpandWidth(false)))
                 {
                     ItemsTableEntry e = new ItemsTableEntry();
-                    e.ID = currentItem.UID;
+                    e.ID = currentItem.ItemID;
                     e.path = AssetDatabase.GetAssetPath(currentItem).Replace("Assets/Resources/", "").Replace(".asset", "");
                     Registry.assets.items.items.Add(e);
                     EditorUtility.SetDirty(Registry.assets.items);
@@ -111,8 +140,11 @@ public class ItemEditor : EditorWindow {
             currentItem.Description = EditorGUILayout.TextField("Description:", currentItem.Description);
             currentItem.Value = EditorGUILayout.IntField("Value:", currentItem.Value);
             currentItem.CanStack = EditorGUILayout.Toggle("Can Stack", currentItem.CanStack);
-            currentItem.logic = EditorGUILayout.TextField("Logic:", currentItem.logic);
-            currentItem.UsableInCombat = EditorGUILayout.Toggle("Usable in Combat:", currentItem.UsableInCombat);
+            if (currentItem is BaseConsumable)
+            {
+                (currentItem as BaseConsumable).logic = EditorGUILayout.TextField("Logic:", (currentItem as BaseConsumable).logic);
+                (currentItem as BaseConsumable).UsableInCombat = EditorGUILayout.Toggle("Usable in Combat:", (currentItem as BaseConsumable).UsableInCombat);
+            }
             if (currentItem.Value < 0)
                 currentItem.Value = 0;
             currentItem.sprite = (Sprite)EditorGUILayout.ObjectField("Graphic:", currentItem.sprite, typeof(Sprite));
@@ -125,15 +157,10 @@ public class ItemEditor : EditorWindow {
                 }
                 
             }
-            int oldCatIndex = catIndex;
-            catIndex = EditorGUILayout.Popup("Category:", catIndex, categories);
-            currentItem.category = categories[catIndex];
+            currentItem.category = EditorGUILayout.TextField("Category:", currentItem.category);
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
-            if (catIndex != oldCatIndex)
-            {
-                RecreateAsset(categories[catIndex]);
-            }
-            if (currentItem.category == "weapon" && currentItem.GetType() == typeof(BaseWeapon))
+          
+            if (currentItem is BaseWeapon)
             {
                 BaseWeapon w = (BaseWeapon)currentItem;
                 //EditorGUILayout.BeginHorizontal("box");
@@ -142,97 +169,65 @@ public class ItemEditor : EditorWindow {
                 //EditorGUILayout.EndHorizontal();
                 w.HitChance = EditorGUILayout.DoubleField("Hit Chance:", w.HitChance);
                 w.CritChance = EditorGUILayout.DoubleField("Crit chance:", w.CritChance);
-                w.StatUsed = EditorGUILayout.TextField("Stat:", w.StatUsed);
-                EditorGUILayout.BeginVertical("box");
-                EditorGUILayout.LabelField("Refine Items Needed");
-                if (GUILayout.Button("Add"))
-                {
-                    RefineItemEntry refineEntry = new RefineItemEntry();
-                    refineEntry.key = "";
-                    refineEntry.amount = 1;
-                    w.refineItemsNeeded.Add(refineEntry);
-                }
-                for (int j = 0; j < w.refineItemsNeeded.Count; j++)
-                {
-                    EditorGUILayout.BeginVertical("box");
-                    RefineItemEntry refined = w.refineItemsNeeded[j];
-                    BaseItem i = Resources.Load<BaseItem>(Registry.assets.items[refined.key]);
-                    i = (BaseItem)EditorGUILayout.ObjectField("Item:", i, typeof(BaseItem));
-                    if (i != null)
-                        w.refineItemsNeeded[j].key = i.UID;                    
-                    w.refineItemsNeeded[j].amount = EditorGUILayout.IntField("Amount:", w.refineItemsNeeded[j].amount);
-                    if (GUILayout.Button("Remove"))
-                    {
-                        w.refineItemsNeeded.RemoveAt(j);
-                        j--;
-                    }
-                    EditorGUILayout.EndVertical();
-                }
-                EditorGUILayout.EndVertical();
-
-                EditorGUILayout.BeginVertical("box");
-
-                EditorGUILayout.LabelField("Growth");
-
-                if (GUILayout.Button("Add"))
-                {
-                    GrowthData d = new GrowthData();
-                    d.growth = new List<int>();
-                    for (int i = 0; i < 10; i++) d.growth.Add(0);
-                    d.stat = "stat";
-                    w.refineGrowth.Add(d);
-                }
-
-                for(int j= 0; j < w.refineGrowth.Count; j++)
-                {
-                    GrowthData d = w.refineGrowth[j];
-                    EditorGUILayout.BeginVertical("box");
-                    w.refineGrowth[j].stat = EditorGUILayout.TextField("Stat:", w.refineGrowth[j].stat);
-                    EditorGUILayout.BeginHorizontal();
-                    for(int i = 0; i < d.growth.Count; i++)
-                    {
-                        EditorGUILayout.BeginVertical();
-                        EditorGUILayout.LabelField(i.ToString(), GUILayout.Width(30));
-                        w.refineGrowth[j].growth[i] = EditorGUILayout.IntField(d.growth[i], GUILayout.Width(30));
-                        EditorGUILayout.EndVertical();
-                    }
-                    EditorGUILayout.EndHorizontal();
-                    if (GUILayout.Button("Remove"))
-                    {
-                        w.refineGrowth.RemoveAt(j);
-                        j--;
-                    }
-                    EditorGUILayout.EndVertical();
-                }
-
-                EditorGUILayout.EndVertical();
-
-                EditorGUILayout.BeginVertical("box");
-                EditorGUILayout.LabelField("Sockets");
-                if (GUILayout.Button("Add"))
-                {
-                    w.sockets.Add("");
-                }
-                for (int i = 0; i < w.sockets.Count; i++)
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    w.sockets[i] = EditorGUILayout.TextField("Socket Type:", w.sockets[i]);
-                    if (GUILayout.Button("Remove"))
-                    {
-                        w.sockets.RemoveAt(i);
-                        i--;
-                    }
-                    EditorGUILayout.EndHorizontal();
-                }
-
-                EditorGUILayout.EndVertical();
+                w.StatUsed = EditorGUILayout.TextField("Stat:", w.StatUsed);                              
             }
-            else if (currentItem.category == "consumable" && currentItem.GetType() == typeof(BaseConsumable))
+            else if (currentItem is BaseArmor)
+            {
+                BaseArmor a = (BaseArmor)currentItem;
+                a.Defense = EditorGUILayout.IntField("Defense:", a.Defense);
+                a.Slot = EditorGUILayout.TextField("Slot:", a.Slot);
+            }
+            else if (currentItem is BaseConsumable)
             {
                 BaseConsumable c = (BaseConsumable)currentItem;
                 c.statsToModify = EditorGUILayout.TextField("Stats:", c.statsToModify);
                 c.amountToModify = EditorGUILayout.IntField("Amount:", c.amountToModify);
             }
+
+            if (currentItem is BaseEquippable)
+            {
+                BaseEquippable e = (BaseEquippable)currentItem;
+                e.Slot = EditorGUILayout.TextField("Slot:", e.Slot);
+                EditorGUILayout.BeginVertical("box");
+                for(int i = 0; i < e.ItemMods.Count; i++)
+                {
+                    EditorGUILayout.BeginHorizontal("box");
+                   
+                    for (int j = 0; j < e.ItemMods[i].data.Count; j++)
+                    {                        
+                        EditorGUILayout.BeginHorizontal(); 
+                        EditorGUILayout.LabelField(e.ItemMods[i].data[j].key, GUILayout.Width(60));
+                        e.ItemMods[i].data[j].value = EditorGUILayout.TextField(e.ItemMods[i].data[j].value.ToString(), GUILayout.Width(70));
+                        if (GUILayout.Button("X", GUILayout.Width(20)))
+                        {
+                            e.ItemMods[i].data.RemoveAt(j);
+                            return;
+                        }
+                        EditorGUILayout.EndHorizontal();
+                    }
+                    if (GUILayout.Button("Add", GUILayout.Width(40)))
+                    {
+                        int _i = i;
+                        BaseEquippable equip = e; 
+                        EditorInputDialog.Show((s) => { 
+
+                            equip.ItemMods[_i].data.Add(new ItemModDataValue() { key = s, value = "new_value" });
+                        }, "mod_key", () => this.Focus());
+                    }
+                    GUILayout.FlexibleSpace();
+                    EditorGUILayout.EndHorizontal();
+                }
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                if (GUILayout.Button("Add Static Mod", GUILayout.Width(150)))
+                {
+                    e.ItemMods.Add(new ItemModData());
+                }
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.EndVertical();
+            }
+
             //currentItem.sprite.texture
             EditorGUILayout.EndScrollView();
         }
@@ -250,7 +245,7 @@ public class ItemEditor : EditorWindow {
             BaseConsumable c = new BaseConsumable();
             c.Name = currentItem.Name;
             c.name = c.Name;
-            c.UID = currentItem.UID;
+            c.ItemID = currentItem.ItemID;
             c.Value = currentItem.Value;
             c.sprite = currentItem.sprite;
             c.Description = currentItem.Description;
@@ -262,7 +257,7 @@ public class ItemEditor : EditorWindow {
             BaseWeapon c = new BaseWeapon();
             c.Name = currentItem.Name;
             c.name = c.Name;
-            c.UID = currentItem.UID;
+            c.ItemID = currentItem.ItemID;
             c.Value = currentItem.Value;
             c.sprite = currentItem.sprite;
             c.Description = currentItem.Description;
@@ -274,7 +269,7 @@ public class ItemEditor : EditorWindow {
             BaseArmor c = new BaseArmor();
             c.Name = currentItem.Name;
             c.name = c.Name;
-            c.UID = currentItem.UID;
+            c.ItemID = currentItem.ItemID;
             c.Value = currentItem.Value;
             c.sprite = currentItem.sprite;
             c.Description = currentItem.Description;

@@ -83,7 +83,7 @@ public class UIInventory : MonoBehaviour {
 	{
 		bool found = false;
 		foreach (UIItemEntry e in currentEntries) {
-			if (e.item.UID == item.UID) {
+			if (e.item.ItemID == item.ItemID) {
 				int a = 0;
 				int.TryParse (e.amount.text, out a);
 				e.amount.text = (a + amount).ToString ();
@@ -106,7 +106,7 @@ public class UIInventory : MonoBehaviour {
 		bool remove = false;
 		int index = 0;
 		foreach (UIItemEntry e in currentEntries) {			
-			if (e.item.UID == item.UID) {
+			if (e.item.ItemID == item.ItemID) {
 				int a = 0;
 				int.TryParse (e.amount.text, out a);
 				e.amount.text = (a - amount).ToString ();

@@ -28,7 +28,7 @@ public class AssetEntryDrawer : Editor {
 			BaseItem lastLoaded = loaded;
 
 			if (loaded != null) {
-				EditorGUILayout.LabelField (loaded.UID);
+				EditorGUILayout.LabelField (loaded.ItemID);
 			}
 			EditorGUILayout.BeginHorizontal ();
 
@@ -37,11 +37,11 @@ public class AssetEntryDrawer : Editor {
 
 			if (loaded != lastLoaded) {
 				table.items [i].path = AssetDatabase.GetAssetPath (loaded).Replace ("Assets/Resources/", "").Replace(".asset", "");
-				table.items [i].ID = loaded.UID;
+				table.items [i].ID = loaded.ItemID;
 				for (int j = 0; j < table.items.Count; j++) {
 					//if (e.ID == loaded.UID && 
 					ItemsTableEntry e = table.items [j];
-					if (e.ID == loaded.UID && j != i) {
+					if (e.ID == loaded.ItemID && j != i) {
 						Debug.LogError("[Table] Duplicated id at " + i + " and " + j );
 					}
 				}

@@ -6,6 +6,7 @@ public class PlayerAnimation : MonoBehaviour {
 	public Animator animator;
 	Vector3 lastPos;
 	bool walking = false;
+    public float MovingDistanceThreshold = 0.1f;
 	// Use this for initialization
 	void Start () {
 		lastPos = transform.position;
@@ -14,10 +15,9 @@ public class PlayerAnimation : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		float distance = Vector3.Distance (lastPos, transform.position);
-
-		float speed = distance / Time.deltaTime;
-
-		animator.SetFloat ("speed", speed);
+        bool moving = distance > MovingDistanceThreshold;
+        
+        animator.SetBool("Walking", moving);
 
 		lastPos = transform.position;
 	}

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0639afd0ed79ab498e98b9ac8f6b33c, type: 3}
-  m_Name: SpiritRecombiner
+  m_Name: Spirit Recombiner
   m_EditorClassIdentifier: 
-  UID: 49c67ce2-fcb7-451f-8f65-e5e4c0783893
+  ItemID: spirit_recombiner
   Name: Spirit Recombiner
   Description: Recombine your spirit with your body, resurrecting you.
   sprite: {fileID: 21300000, guid: 5441995b0d9fb1f40bd7997f59de852c, type: 3}
@@ -20,7 +20,7 @@ MonoBehaviour:
   ItemQuality: 2
   Value: 15
   CanStack: 1
-  UsableInCombat: 1
-  logic: ress
   statsToModify: 
   amountToModify: 0
+  UsableInCombat: 1
+  logic: ress

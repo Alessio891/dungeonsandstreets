@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f80b3c58efbd55478bdb7c9915ae357, type: 3}
   m_Name: '[0] Poor Axe'
   m_EditorClassIdentifier: 
-  UID: 4948c118-398e-429d-a198-5ef1a9308fc5
+  ItemID: poor_axe
   Name: Poor Axe
   Description: This axe doesn't look very resistant
   sprite: {fileID: 21300000, guid: cd34c581da9cbdb4983ee5ab22772536, type: 3}
@@ -20,8 +20,16 @@ MonoBehaviour:
   ItemQuality: 4
   Value: 1
   CanStack: 0
-  UsableInCombat: 1
-  logic: equip
+  IsUnique: 0
+  ItemMods:
+  - data:
+    - key: mod
+      value: stat_mod
+    - key: Stat
+      value: Intelligence
+    - key: Value
+      value: 5
+  Slot: rHand
   Damage: 2
   HitChance: 93
   CritChance: 4
@@ -33,12 +41,3 @@ MonoBehaviour:
   HitSound: {fileID: 0}
   MissSound: {fileID: 0}
   HitParticles: {fileID: 0}
-  refineItemsNeeded:
-  - key: 86051c21-dfcf-4b82-9c99-bc0f62bcf870
-    amount: 2
-  sockets: []
-  refineGrowth:
-  - stat: Damage
-    growth: 00000000010000000100000002000000020000000300000003000000040000000400000005000000
-  - stat: CritChance
-    growth: 03000000030000000400000004000000050000000500000006000000060000000700000008000000

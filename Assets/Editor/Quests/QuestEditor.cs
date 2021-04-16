@@ -186,7 +186,7 @@ public class QuestEditor : EditorWindow
                                 BaseItem item = Resources.Load<BaseItem>(Registry.assets.items[id]);
                                 item = (BaseItem)EditorGUILayout.ObjectField("Item:", item, typeof(BaseItem));
                                 if (item != null)
-                                    currentQuest.Objectives[i].ObjectiveTriggerData = item.UID;
+                                    currentQuest.Objectives[i].ObjectiveTriggerData = item.ItemID;
                                 else
                                     currentQuest.Objectives[i].ObjectiveTriggerData = "";
                                 break;
@@ -299,7 +299,7 @@ public class QuestEditor : EditorWindow
                                 
                                 item = (BaseItem)EditorGUILayout.ObjectField("Item:", item, typeof(BaseItem));
                                 if (item != null)
-                                    currentQuest.Rewards[i].reward = item.UID;
+                                    currentQuest.Rewards[i].reward = item.ItemID;
                                 currentQuest.Rewards[i].amount = EditorGUILayout.IntField("Amount:", currentQuest.Rewards[i].amount);
                                 break;
                         }

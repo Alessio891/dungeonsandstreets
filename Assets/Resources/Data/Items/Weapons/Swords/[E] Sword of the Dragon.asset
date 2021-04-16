@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f80b3c58efbd55478bdb7c9915ae357, type: 3}
   m_Name: '[E] Sword of the Dragon'
   m_EditorClassIdentifier: 
-  UID: 3113bb71-841b-4d6a-94e4-af5097951b1a
+  ItemID: 
   Name: Sword of the Dragon
   Description: This sword was made to slain dragons
   sprite: {fileID: 21300000, guid: 5af59fc0ab7ded54fbf1e1f1a64e05fb, type: 3}
@@ -20,8 +20,9 @@ MonoBehaviour:
   ItemQuality: 4
   Value: 250
   CanStack: 0
-  UsableInCombat: 1
-  logic: equip
+  IsUnique: 0
+  ItemMods: []
+  Slot: head
   Damage: 25
   HitChance: 98
   CritChance: 29
@@ -33,6 +34,3 @@ MonoBehaviour:
   HitSound: {fileID: 0}
   MissSound: {fileID: 0}
   HitParticles: {fileID: 0}
-  refineItemsNeeded: []
-  sockets: []
-  refineGrowth: []

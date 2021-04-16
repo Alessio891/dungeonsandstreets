@@ -26,22 +26,7 @@ public class ImportLootTableEditor : EditorWindow {
         selected = (LootTable)EditorGUILayout.ObjectField("Loot Table:", selected, typeof(LootTable));
         if (selected != null)
         {
-            foreach (FeatureDropData d in selected.drops)
-            {
-                if (d.item != null)
-                    EditorGUILayout.LabelField("- Item: " + d.item.Name + " - Weight: " + d.weight.ToString());
-                else
-                    EditorGUILayout.LabelField("- Item: Empty");
-            }
-
-            if (GUILayout.Button("Import"))
-            {
-                onImport(selected.drops);
-                EditorWindow.GetWindow<FeatureEditor>().Focus();
-                this.Close();
-            }
-
-
+            
         }
     }
 }

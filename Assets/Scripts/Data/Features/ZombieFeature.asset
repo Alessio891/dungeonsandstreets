@@ -26,4 +26,7 @@ MonoBehaviour:
   maxItemDrops: 0
   OnMapFeature: {fileID: 114316575076377400, guid: 3073501cdfed34b4a82ffa74b8d5a878,
     type: 3}
-  possibleItems: []
+  possibleItems:
+  - Type: 
+    Chance: 0.397
+    Amount: 0

@@ -7,7 +7,7 @@ public class BaseCraftingStation : BasicFeature {
     {
         if (ClickedOnThis())
         {
-            UIRefine.instance.Show();
+            
         }
     }
 }

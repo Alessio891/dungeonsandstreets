@@ -11,6 +11,8 @@ using System.Globalization;
 
 public class GameManager : MonoBehaviour {
 
+    public GameObject GrassTest;
+
 	public static NpcFeature LastCombatTarget;
 	public Material baseTileMaterial;
 

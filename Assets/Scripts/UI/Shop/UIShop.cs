@@ -15,10 +15,12 @@ public class UIShop : MonoBehaviour {
 	public Text ShopName;
     public Image ShopAvatar;
     public Text PlayerGold;
-	public Image BuyButton;
-	public Image SellButton;
+	public Image BuyButtonActive;
+	public Image SellButtonActive;
+    public Image BuyButtonInactive;
+    public Image SellButtonInactive;
 
-	public GameObject BuyGroup;
+    public GameObject BuyGroup;
 	public GameObject SellGroup;
 
     public GameObject DetailsBuyButton;
@@ -33,9 +35,6 @@ public class UIShop : MonoBehaviour {
     public CanvasGroup detailsCanvas;
     public Transform detailsContent;
     public List<UIShopItemDetails> currentDetails;
-
-    public Sprite ActiveButton;
-    public Sprite InactiveButton;
 
 	public Text ItemName;
 	public Text ItemDesc;
@@ -75,13 +74,16 @@ public class UIShop : MonoBehaviour {
 
     private void ScrollSnap_onPageChange(int page)
     {
-        if (currentSelectedIndex >= 0 && currentSelectedIndex < shopEntries.Count)
+        if (canvasGroup.alpha > 0)
         {
-            if (shopEntries[currentSelectedIndex] != null)
-                shopEntries[currentSelectedIndex].Unselect();
+            if (currentSelectedIndex >= 0 && currentSelectedIndex < shopEntries.Count)
+            {
+                if (shopEntries[currentSelectedIndex] != null)
+                    shopEntries[currentSelectedIndex].Unselect();
+            }
+            currentSelectedIndex = page;
+            shopEntries[currentSelectedIndex].Select();
         }
-        currentSelectedIndex = page;
-        shopEntries[currentSelectedIndex].Select();
     }
 
     // Update is called once per frame
@@ -146,8 +148,11 @@ public class UIShop : MonoBehaviour {
 
 	public void LoadShopInventory()
 	{
-        BuyButton.sprite = ActiveButton;
-        SellButton.sprite = InactiveButton;       
+        BuyButtonActive.enabled = true;
+        BuyButtonInactive.enabled = false;
+        SellButtonActive.enabled = false;
+        SellButtonInactive.enabled = true;
+
         SellGroup.SetActive (false);
 		BuyGroup.SetActive (true);
         DetailsBuyButton.SetActive(true);
@@ -184,15 +189,14 @@ public class UIShop : MonoBehaviour {
 			e.amount = 0;
 			e.price = 0;
             Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("UID", itemAsset.UID);
+            data.Add("UID", itemAsset.ItemID);
             if (itemAsset is BaseWeapon)
             {
                 BaseWeapon weapon = (BaseWeapon)itemAsset;
                 data.Add("Damage", weapon.Damage);
                 data.Add("HitChance", weapon.HitChance);
                 data.Add("CritChance", weapon.CritChance);
-                data.Add("DamageType", weapon.DamageType);
-                data.Add("currentRefine", 0);
+                data.Add("DamageType", weapon.DamageType);                
             }
             e.data = data;
 			int.TryParse (item ["price"].ToString (), out e.price);
@@ -219,8 +223,11 @@ public class UIShop : MonoBehaviour {
 
 	public void LoadPlayerInventory()
 	{
-        BuyButton.sprite = InactiveButton;
-        SellButton.sprite = ActiveButton;
+        BuyButtonActive.enabled = false;
+        BuyButtonInactive.enabled = true;
+        SellButtonActive.enabled = true;
+        SellButtonInactive.enabled = false;
+        
 
         SellGroup.SetActive (true);
 		BuyGroup.SetActive (false);
@@ -333,7 +340,7 @@ public class UIShop : MonoBehaviour {
 			Dictionary<string, object> values = new Dictionary<string, object>();
 			values.Add("user", PlayerPrefs.GetString("user"));
 			values.Add("shopId", shopData["UID"]);
-			values.Add("itemId", BuyGrid.transform.GetChild(currentSelectedIndex).GetComponent<UIShopEntry>().item.UID);
+			values.Add("itemId", BuyGrid.transform.GetChild(currentSelectedIndex).GetComponent<UIShopEntry>().item.ItemID);
 			values.Add("amount", amountToBuy);
 			values.Add("posX", ((double)shopData["posX"]).ToStringEx());
 			values.Add("posY", ((double)shopData["posY"]).ToStringEx());

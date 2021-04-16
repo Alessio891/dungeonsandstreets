@@ -15,6 +15,7 @@ public class ItemData
     public int amount;
     public string category;
     public string data;
+    public BaseItem itemInstance;
 }
 
 public class PlayerInventory : MonoBehaviour {
@@ -101,7 +102,27 @@ public class PlayerInventory : MonoBehaviour {
         foreach (Dictionary<string, object> _o in data)
         {
             Dictionary<string, object> o = (Dictionary<string, object>)_o["data"];
+
+            BaseItem item = null;
+            if (o["Category"].ToString().ToLower() == "weapon")
+            {
+                item = new BaseWeapon();
+                (item as BaseWeapon).Deserialize(o);
+            } else if (o["Category"].ToString().ToLower() == "armor")
+            {
+                item = new BaseArmor();
+                (item as BaseArmor).Deserialize(o);
+            } else if (o["Category"].ToString().ToLower() == "consumable")
+            {
+                item = new BaseConsumable();
+                (item as BaseConsumable).Deserialize(o);
+            }
+
+            BaseItem templateItem = Resources.Load<BaseItem>(Registry.assets.items[o["ItemID"].ToString()]);
+            item.sprite = templateItem.sprite;
+
             ItemData d = new ItemData();
+            d.itemInstance = item;
             d.Name = o["Name"].ToString();
             d.UID = _o["itemUID"].ToString();
             d.instanceID = o["UID"].ToString();
@@ -110,46 +131,17 @@ public class PlayerInventory : MonoBehaviour {
             {
                 int.TryParse(o["Damage"].ToString(), out d.Damage);
                 int.TryParse(o["HitChance"].ToString(), out d.HitChance);
-                int.TryParse(o["CritChance"].ToString(), out d.CritChance);
-                int.TryParse(o["currentRefine"].ToString(), out d.currentRefine);
+                int.TryParse(o["CritChance"].ToString(), out d.CritChance);                
             }
             int.TryParse(_o["amount"].ToString(), out d.amount);
             Debug.Log("Parsed item " + d.Name);
             inventoryData.Add(d);
         }
+
+        Resources.UnloadUnusedAssets();
     }
 
-	public void Deserialize (Dictionary<string, object> serialized)
-	{
-		Dictionary<BaseItem, int> oldInventory = inventory;
-		inventory = new Dictionary<BaseItem, int> ();
-		foreach(KeyValuePair<string, object> pair in serialized)
-		{
-			string itemId = pair.Key;
-			int amount = 0;
-			int.TryParse (pair.Value.ToString (), out amount);
-            Debug.Log("Trying t get " + itemId);
-			BaseItem item = Resources.Load<BaseItem> (Registry.assets.items [itemId]);
-			inventory.Add (item, amount);
-			if (oldInventory != null) {
-				if (!oldInventory.ContainsKey (item)) {
-					Debug.Log ("NEW ITEM!");
-					if (OnItemAdded != null)
-						OnItemAdded (item, amount);
-				} else if (oldInventory.ContainsKey (item) && oldInventory [item] != inventory [item]) {
-					if (oldInventory [item] > inventory [item]) {
-						Debug.Log ("REMOVED ITEM!");
-						if (OnItemRemoved != null)
-							OnItemRemoved (item, oldInventory [item] - inventory [item]);
-					} else if (oldInventory [item] < inventory [item]) {
-						Debug.Log ("NEW ITEM!");
-						if (OnItemAdded != null)
-							OnItemAdded (item, inventory [item] - oldInventory [item]);
-					}
-				}
-			}
-		}
-	}
+	
 
 	#endregion
 }

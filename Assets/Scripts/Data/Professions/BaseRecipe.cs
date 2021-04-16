@@ -25,7 +25,7 @@ public class BaseRecipe : ScriptableObject, IServerSerializable
         foreach(RecipeItemData d in Ingredients)
         {
             Dictionary<string, object> ingr = new Dictionary<string, object>();
-            ingr.Add("itemId", d.Item.UID);
+            ingr.Add("itemId", d.Item.ItemID);
             ingr.Add("amount", d.Amount);
             ingredientsData.Add(ingr);
         }
@@ -35,7 +35,7 @@ public class BaseRecipe : ScriptableObject, IServerSerializable
         foreach (RecipeItemData d in Result)
         {
             Dictionary<string, object> ingr = new Dictionary<string, object>();
-            ingr.Add("itemId", d.Item.UID);
+            ingr.Add("itemId", d.Item.ItemID);
             ingr.Add("amount", d.Amount);
             resultsData.Add(ingr);
         }

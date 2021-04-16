@@ -58,7 +58,7 @@ public class ItemsTable : ScriptableObject {
 	{
 		foreach (ItemsTableEntry e in items) {
 			BaseItem i = Resources.Load<BaseItem>(e.path);
-			e.ID = i.UID;
+			e.ID = i.ItemID;
 		}
 	}
 

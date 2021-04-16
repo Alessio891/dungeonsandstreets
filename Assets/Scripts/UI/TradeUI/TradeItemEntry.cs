@@ -65,7 +65,7 @@ public class TradeItemEntry : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 				chosenBg.enabled = false;
 				normalBg.enabled = true;
 				for (int i = 0; i < TradeUI.instance.itemsToTrade.Count; i++) {
-					if (TradeUI.instance.itemsToTrade [i] .ContainsKey(item.UID)) {
+					if (TradeUI.instance.itemsToTrade [i] .ContainsKey(item.ItemID)) {
 						TradeUI.instance.itemsToTrade.RemoveAt (i);
 						break;
 					}
@@ -88,8 +88,8 @@ public class TradeItemEntry : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 				chosenAmount = amount;
 			amountText.text = chosenAmount.ToString () + "/" + amount.ToString ();
 			for (int i = 0; i < TradeUI.instance.itemsToTrade.Count; i++) {
-				if (TradeUI.instance.itemsToTrade [i].ContainsKey(item.UID)) {
-					TradeUI.instance.itemsToTrade [i] [item.UID] = chosenAmount;
+				if (TradeUI.instance.itemsToTrade [i].ContainsKey(item.ItemID)) {
+					TradeUI.instance.itemsToTrade [i] [item.ItemID] = chosenAmount;
 					break;
 				}
 			}
@@ -99,7 +99,7 @@ public class TradeItemEntry : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 			chosenBg.enabled = true;
 			normalBg.enabled = false;
 			amountText.text = chosenAmount.ToString () + "/" + amount.ToString ();
-			TradeUI.instance.itemsToTrade.Add (new Dictionary<string, int> () { { item.UID, 1 } });
+			TradeUI.instance.itemsToTrade.Add (new Dictionary<string, int> () { { item.ItemID, 1 } });
 		}
 	}
 

@@ -79,12 +79,12 @@ public class BaseMonster : ScriptableObject, IServerSerializable {
         }
         retVal.Add("ElementDefense", elemData);
         retVal.Add("Type", Type.ToString());
-        Dictionary<string, object> drops = new Dictionary<string, object>();
+        List<Dictionary<string, object>> drops = new List<Dictionary<string, object>>();
         foreach(FeatureDropData d in Drops)
         {
-            drops.Add(d.item.UID, d.weight);
+            drops.Add(d.Serialize());
         }
-        retVal.Add("Drops", drops);
+        retVal.Add("Loot", drops);
 
         Dictionary<string, object> biomeData = new Dictionary<string, object>();
         foreach(KeyValuePair<string, double> p in BiomesData)
@@ -119,13 +119,12 @@ public class BaseMonster : ScriptableObject, IServerSerializable {
             int.TryParse(o.Value.ToString(), out d.amount);
             elementalData.Add(d);
         }
-        Dictionary<string, object> drops = (Dictionary<string, object>)serialized["Drops"];
+        List<Dictionary<string, object>> drops = (List<Dictionary<string, object>>)serialized["Loot"];
         Drops = new List<FeatureDropData>();
-        foreach(KeyValuePair<string, object> o in drops)
+        foreach(Dictionary<string, object> o in drops)
         {
             FeatureDropData d = new FeatureDropData();
-            d.item = Resources.Load<BaseItem>(Registry.assets.items[o.Key]);
-            d.weight = float.Parse(o.Value.ToString());
+            d.Deserialize(o);
             Drops.Add(d);
         }
 

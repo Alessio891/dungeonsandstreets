@@ -49,7 +49,7 @@ public class ShopDrawer : Editor {
 
                         if (loaded != lastLoaded)
                         {
-                            entry.Item = loaded.UID;
+                            entry.Item = loaded.ItemID;
 
                             //Debug.Log ("Switching to " + table.items [i].path);
                             EditorUtility.SetDirty(shop);

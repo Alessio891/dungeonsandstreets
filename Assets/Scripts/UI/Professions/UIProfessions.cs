@@ -163,7 +163,7 @@ public class UIProfessions : MonoBehaviour
         bool canCraft = true;
         foreach(BaseRecipe.RecipeItemData ingr in currentRecipeEntry.recipe.Ingredients)
         {
-            if (!PlayerInventory.instance.HasItem(ingr.Item.UID, ingr.Amount))
+            if (!PlayerInventory.instance.HasItem(ingr.Item.ItemID, ingr.Amount))
             {
                 canCraft = false;
                 break;

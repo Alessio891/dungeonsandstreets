@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class UIEquip : MonoBehaviour {
 
 	public List<UIEquipEntry> entries;
 	public CanvasGroup canvasGroup;
 	public static UIEquip instance;
+    public UIEquipDetails Details;
+
+    public Sprite SelectedBG, UnselectedBG;
+
 
 	void Awake() {
 		instance = this;
@@ -15,6 +19,7 @@ public class UIEquip : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Details.Clear();
 		Hide ();	
 	}
 	
@@ -22,6 +27,20 @@ public class UIEquip : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void Select(string key)
+    {
+        foreach(UIEquipEntry e in entries)
+        {
+            if (e.key == key)
+            {
+                e.Background.sprite = SelectedBG;
+            } else
+            {
+                e.Background.sprite = UnselectedBG;
+            }
+        }
+    }
 
 	public UIEquipEntry Get(string key)
 	{
@@ -42,11 +61,16 @@ public class UIEquip : MonoBehaviour {
 	{
 		canvasGroup.alpha = 1;
 		canvasGroup.interactable = true;
-		canvasGroup.blocksRaycasts = true;
+		canvasGroup.blocksRaycasts = true;        
 		Load ();
+        foreach(UIEquipEntry e in entries)
+        {
+            e.Background.sprite = UnselectedBG;
+        }
 	}
 	public void Hide()
 	{
+        Details.Clear();
 		canvasGroup.alpha = 0;
 		canvasGroup.interactable = false;
 		canvasGroup.blocksRaycasts = false;
@@ -62,9 +86,10 @@ public class UIEquip : MonoBehaviour {
 
 		foreach (UIEquipEntry e in entries) {
 			if (data.ContainsKey (e.key)) {
-				string itemId = data [e.key].ToString ();
+                Dictionary<string, object> mapData = (Dictionary<string, object>)data[e.key];
+                string itemId = mapData["itemID"].ToString ();
 				if (!string.IsNullOrEmpty (itemId)) {
-					BaseItem i = Resources.Load<BaseItem> (Registry.assets.items [itemId]);
+                    BaseItem i = PlayerInventory.instance.GetItem(mapData["UID"].ToString()).itemInstance; //Resources.Load<BaseItem> (Registry.assets.items [itemId]);
 					e.item = i;
 					e.Refresh ();
 				} else {

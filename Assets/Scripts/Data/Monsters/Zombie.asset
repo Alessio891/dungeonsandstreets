@@ -31,15 +31,14 @@ MonoBehaviour:
   - ElementName: water
     amount: 0
   Drops:
-  - item: {fileID: 11400000, guid: 0a61dd46a17f4594daf7fe990f702485, type: 2}
-    weight: 0
-  - item: {fileID: 11400000, guid: 10ab2b34182a47a4aae352caa4de2aa1, type: 2}
-    weight: 200
-  - item: {fileID: 11400000, guid: 9efbe9aa96d94f74eba7f2839a737492, type: 2}
-    weight: 200
-  - item: {fileID: 11400000, guid: 34d1c7d52ed2c9a4384827a63cf1df29, type: 2}
-    weight: 0
-  - item: {fileID: 11400000, guid: ccafc91d72eaf1c4ebfb6187babc4ae0, type: 2}
-    weight: 0
+  - Type: random_equip
+    Chance: 0.4
+    Amount: 2
+  - Type: random_material
+    Chance: 0.6
+    Amount: 4
+  - Type: gold
+    Chance: 1
+    Amount: 500
   minGold: 1
   maxGold: 50

@@ -178,39 +178,14 @@ public class FeatureEditor : EditorWindow {
         {
             current.possibleItems.Add(new FeatureDropData());
         }
-        if (GUILayout.Button("Import Loot Table", GUILayout.ExpandWidth(false)))
-        {
-            ImportLootTableEditor.get((r) => {
-                foreach (FeatureDropData d in r)
-                {
-                    bool present = false;
-                    foreach (FeatureDropData d2 in current.possibleItems)
-                    {
-                        if (d2.item == null)
-                            continue;
-                        if (d2.item.UID == d.item.UID)
-                        {
-                            present = true;
-                            break;
-                        }
-                    }
-                    if (present)
-                        continue;
-                    current.possibleItems.Add(d);
-                }
-            });
-        }
+        
         EditorGUILayout.EndHorizontal();
         GUILayout.Space(5);
         EditorGUI.indentLevel++;
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
         indexToRemove.Clear();
         int index = 0;
-        sumOfWeights = 0;
-        foreach (FeatureDropData d in current.possibleItems)
-        {
-            sumOfWeights += d.weight;         
-        }
+       
         foreach (FeatureDropData d in current.possibleItems)
         {
             drawItem(d, index);
@@ -236,12 +211,8 @@ public class FeatureEditor : EditorWindow {
             }
         }
         EditorGUILayout.BeginVertical("box");
-        EditorGUILayout.BeginHorizontal();
-        float perc = data.weight / sumOfWeights;
-        perc *= 100;
-        float truncated = (float)(System.Math.Truncate((double)perc * 100.0) / 100.0);
-
-        toggled[index] = EditorGUILayout.Foldout(toggled[index], (data.item != null) ? data.item.Name + " ["+truncated.ToString()+"%]": "Empty");
+        EditorGUILayout.BeginHorizontal(); 
+        toggled[index] = EditorGUILayout.Foldout(toggled[index], (!string.IsNullOrEmpty(data.Type)) ? data.Type : "Empty");
         if (GUILayout.Button("X", GUILayout.ExpandWidth(false)))
         {
             indexToRemove.Add(index);
@@ -252,21 +223,20 @@ public class FeatureEditor : EditorWindow {
         {
             EditorGUI.indentLevel++;
             EditorGUILayout.BeginHorizontal();
-            data.item = (BaseItem)EditorGUILayout.ObjectField("Item:", data.item, typeof(BaseItem));
+            data.Type = EditorGUILayout.TextField(data.Type);            
             if (GUILayout.Button("Pick", GUILayout.ExpandWidth(false)))
             {
+                FeatureDropData entry = data;
                 ItemSelectionEditor.onSelect = (item) => {
-                    data.item = item;
+                    entry.Type = item.ItemID;
                     ItemSelectionEditor.onSelect = null;              
                 };
                 EditorWindow.GetWindow<ItemSelectionEditor>().Show();
             }
-            EditorGUILayout.EndHorizontal();
-            if (data.item != null)
-            {
-                data.weight = EditorGUILayout.FloatField("Weight:", data.weight);
-                EditorGUILayout.LabelField("Item Description: " + data.item.Description);                
-            }
+            EditorGUILayout.EndHorizontal();            
+            data.Chance = EditorGUILayout.Slider(data.Chance, 0, 1);
+            data.Amount = EditorGUILayout.IntField(data.Amount);             
+            
             EditorGUI.indentLevel--;
         }
         

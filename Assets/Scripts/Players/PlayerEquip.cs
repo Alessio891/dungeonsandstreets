@@ -7,6 +7,7 @@ public class EquipData
 {
     public string weaponId;
     public string itemUID;
+    public BaseItem Instance;
 }
 
 public class PlayerEquip : MonoBehaviour, IServerSerializable {
@@ -53,9 +54,9 @@ public class PlayerEquip : MonoBehaviour, IServerSerializable {
             EquipData d = new EquipData();
             Dictionary<string, object> data = (Dictionary<string, object>)pair.Value;
             string itemId = data["UID"].ToString();
-            string weaponId = data["weaponId"].ToString();
+            string weaponId = data["itemID"].ToString();
             d.itemUID = itemId;
-            d.weaponId = weaponId;			
+            d.weaponId = weaponId;                        
 			equip.Add (pair.Key, d);
 		}
 	}

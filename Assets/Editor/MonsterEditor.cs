@@ -88,28 +88,46 @@ public class MonsterEditor : EditorWindow {
         EditorGUILayout.EndVertical();
         //Registry.assets.monsters.r
         EditorGUILayout.BeginVertical("box");
-        EditorGUILayout.LabelField("Drops");
+        EditorGUILayout.LabelField("Loot");
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+        EditorGUILayout.LabelField("Type", GUILayout.Width(100));
+        EditorGUILayout.LabelField("Chance", GUILayout.Width(100));
+        EditorGUILayout.LabelField("Amount", GUILayout.Width(100));
+        EditorGUILayout.LabelField("", GUILayout.Width(60));
+        EditorGUILayout.LabelField("", GUILayout.Width(50));
+        GUILayout.FlexibleSpace();
+        EditorGUILayout.EndHorizontal();
         for (int i = 0; i < monster.Drops.Count; i++)
         {
             EditorGUILayout.BeginHorizontal();
-            monster.Drops[i].item = (BaseItem)EditorGUILayout.ObjectField(monster.Drops[i].item, typeof(BaseItem));
-            monster.Drops[i].weight = EditorGUILayout.FloatField(monster.Drops[i].weight, GUILayout.Width(90));
+            GUILayout.FlexibleSpace();
+            monster.Drops[i].Type = EditorGUILayout.TextField(monster.Drops[i].Type, GUILayout.Width(100));
+            monster.Drops[i].Chance = EditorGUILayout.FloatField(monster.Drops[i].Chance, GUILayout.Width(100));
+            monster.Drops[i].Amount = EditorGUILayout.IntField(monster.Drops[i].Amount, GUILayout.Width(100));
+            
             if (GUILayout.Button("Pick", GUILayout.Width(60)))
             {
                 FeatureDropData data = monster.Drops[i];
                 ItemSelectionEditor.onSelect += (item) => {
-                    data.item = item;
+                    data.Type = item.ItemID;
                     Focus();
                 };
                 EditorWindow.GetWindow<ItemSelectionEditor>().Show();
             }
+            if (GUILayout.Button("X", GUILayout.Width(50)))
+            {
+                monster.Drops.RemoveAt(i);
+                return;
+            }
+            GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
         }
         EditorGUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
         if (GUILayout.Button("Add Drop", GUILayout.Width(80)))
         {
-            monster.Drops.Add(new FeatureDropData() { item = null, weight = 0 });
+            monster.Drops.Add(new FeatureDropData() { Type = "", Amount = 1, Chance = 1.0f });
         }
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();

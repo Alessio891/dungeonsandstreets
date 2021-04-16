@@ -181,7 +181,7 @@ public class DialogueEditor : EditorWindow
                                         {
                                             ItemSelectionEditor.onSelect += (item) =>
                                             {
-                                                action.data1 = item.UID;
+                                                action.data1 = item.ItemID;
                                                 this.Focus();
                                             };
                                             ItemSelectionEditor itemPicker = EditorWindow.GetWindow<ItemSelectionEditor>();

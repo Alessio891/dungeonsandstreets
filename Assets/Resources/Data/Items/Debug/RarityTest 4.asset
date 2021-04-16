@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be7c199fcb0eaba4e8fef3fd730021cf, type: 3}
   m_Name: RarityTest 4
   m_EditorClassIdentifier: 
-  UID: ea88ca83-9936-4079-bf46-6c23b656220c
+  ItemID: test_armor_04
   Name: Rarity 0.4
   Description: Test con rarita 0.4
   sprite: {fileID: 21300000, guid: 6592b916f86b19e428db6f6847c7b6dd, type: 3}
   category: special
-  Rarity: 0.4
+  ItemQuality: 0
   Value: 0
   CanStack: 0
-  UsableInCombat: 1
-  logic: 
   statsToModify: 
   amountToModify: 0
+  UsableInCombat: 1
+  logic: 

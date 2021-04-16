@@ -6,17 +6,27 @@ using UnityEngine;
 [System.Serializable]
 public class FeatureDropData
 {
-	public BaseItem item;
-	public float weight;
+	public string Type;
+    public float Chance;
+    public int Amount;
 
 	public Dictionary<string, object> Serialize()
 	{
 		Dictionary<string, object> retVal = new Dictionary<string, object> ();
 
-		retVal.Add (item.UID, weight);
+		retVal.Add ("Type", Type);
+        retVal.Add("Chance", Chance.ToStringEx());
+        retVal.Add("Amount", Amount);
 
 		return retVal;
 	}
+
+    public void Deserialize(Dictionary<string, object> data)
+    {
+        Type = data["Type"].ToString();
+        Chance = float.Parse(data["Chance"].ToString());
+        Amount = int.Parse(data["Amount"].ToString());
+    }
 }
 
 [System.Serializable]
@@ -66,11 +76,12 @@ public class FeatureAsset : ScriptableObject, IServerSerializable {
         retVal.Add("isCraftingStation", isCraftingStation);
         retVal.Add("isEncounter", isEncounter);
         retVal.Add("isNode", isNode);
-		Dictionary<string, object> list = new Dictionary<string, object> ();
+        List<Dictionary<string, object>> loot = new List<Dictionary<string, object>>();
+		
 		foreach (FeatureDropData d in possibleItems) {
-			if (!list.ContainsKey(d.item.UID))
-				list.Add (d.item.UID, d.weight);
+            loot.Add(d.Serialize());
 		}
+
         Dictionary<string, object> biomeData = new Dictionary<string, object>();
         foreach (KeyValuePair<string, double> p in BiomesData)
         {
@@ -78,7 +89,7 @@ public class FeatureAsset : ScriptableObject, IServerSerializable {
         }
         retVal.Add("BiomesSpawnRate", biomeData);
 
-        retVal.Add ("possibleItems", list);
+        retVal.Add ("Loot", loot);
 
 		return retVal;
 	}
@@ -93,14 +104,11 @@ public class FeatureAsset : ScriptableObject, IServerSerializable {
 		int.TryParse (serialized ["maxGoldDrop"].ToString (), out maxGoldDrop);
 		int.TryParse (serialized ["minItemDrops"].ToString (), out minItemDrops);
 		int.TryParse (serialized ["maxItemDrops"].ToString (), out maxItemDrops);
-		Dictionary<string, object> poss = (Dictionary<string, object>)serialized ["possibleItems"];
+		List<Dictionary<string, object>> loot = (List<Dictionary<string, object>>)serialized ["Loot"];
 		possibleItems = new List<FeatureDropData> ();
-		foreach (KeyValuePair<string, object> o in poss) {
+		foreach (Dictionary<string, object> o in loot) {
 			FeatureDropData d = new FeatureDropData ();
-
-			Debug.Log ("Loading item " + Registry.assets.items [o.Key] + " for id " + o.Key);
-			d.item = Resources.Load<BaseItem> (Registry.assets.items [o.Key]);
-			float.TryParse (o.Value.ToString (), out d.weight);
+            d.Deserialize(o);
 			possibleItems.Add (d);
 		}
         isCraftingStation = (bool)serialized["isCraftingStation"];
