@@ -33,6 +33,8 @@ public class UITab : MonoBehaviour, IPointerClickHandler {
             selectedGO.SetActive(true);
             unselectedGO.SetActive(false);
         }
+
+        SendMessage("OnTabSelected");
     }
 
     public void Unselect()
@@ -48,6 +50,7 @@ public class UITab : MonoBehaviour, IPointerClickHandler {
             selectedGO.SetActive(false);
             unselectedGO.SetActive(true);
         }
+        SendMessage("OnTabUnselected");
     }
 
     public void OnPointerClick(PointerEventData eventData)

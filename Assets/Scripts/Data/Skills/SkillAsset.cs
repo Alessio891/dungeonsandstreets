@@ -6,7 +6,7 @@ using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
+[System.Serializable]
 public class SkillAsset : ScriptableObject {
     public string ID;
     public string Name;

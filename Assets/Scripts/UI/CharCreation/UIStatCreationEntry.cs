@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIStatCreationEntry : MonoBehaviour {
+public class UIStatCreationEntry : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 
 	public string statKey;
+    [TextArea(3,6)]
+    public string Description;
 
 	public Text amount;
 
@@ -50,4 +53,14 @@ public class UIStatCreationEntry : MonoBehaviour {
 			amount.text = am.ToString ();
 		}
 	}
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        UICharController.instance.HideInfo();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        UICharController.instance.ShowInfo(Description, eventData.position);
+    }
 }

@@ -84,7 +84,7 @@ public static class Bridge {
 #if UNITY_EDITOR
     public static string IP = "http://localhost:8080/";// "https://aqueous-beyond-72197.herokuapp.com/";
 #else
-    public static string IP = "https://aqueous-beyond-72197.herokuapp.com/";
+    public static string IP = "http://93.41.236.162:8080/"; //"https://aqueous-beyond-72197.herokuapp.com/";
 #endif
     public static string url { get { return IP + "DungeonsAndStreets/"; } }
 

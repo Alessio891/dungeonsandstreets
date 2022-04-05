@@ -13,7 +13,29 @@ public class UICharController : MonoBehaviour {
 
 	public Text buttonText;
 
-	public void NextStep()
+    public static UICharController instance;
+
+    public CanvasGroup InfoBox;
+    public Text InfoText;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    public void ShowInfo(string text, Vector2 pos)
+    {
+        InfoBox.alpha = 1.0f;
+        InfoText.text = text;
+        InfoBox.transform.position = pos+new Vector2(0,1);
+    }
+
+    public void HideInfo()
+    {
+        InfoBox.alpha = 0;
+    }
+
+    public void NextStep()
 	{
 		if (currentStep + 1 < steps.Length) {
 			steps [currentStep].alpha = 0;
@@ -45,6 +67,7 @@ public class UICharController : MonoBehaviour {
 			g.alpha = 0;
 		steps [0].alpha = 1;
 		buttonText.text = stepsButtonName [currentStep];
+        HideInfo();
 	}
 	
 	// Update is called once per frame

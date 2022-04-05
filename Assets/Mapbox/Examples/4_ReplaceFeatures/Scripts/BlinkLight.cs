@@ -7,7 +7,7 @@ public class BlinkLight : MonoBehaviour {
 
 	float blinkDuration = 2.0f;
 	void Start () {
-		StartCoroutine(BlinkLed());
+		//StartCoroutine(BlinkLed());
 	}
 
 	private IEnumerator BlinkLed()
