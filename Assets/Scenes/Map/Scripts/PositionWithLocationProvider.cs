@@ -328,10 +328,13 @@ namespace Mapbox.Examples.LocationProvider
                         						
                         Debug.Log (s);
 						ServerResponse resp = new ServerResponse (s);
-						List<object> nearMe = (List<object>)resp.GetIncomingDictionary () ["data"];
-                        List<object> nearNodes = (List<object>)resp.GetIncomingDictionary()["nodes"];
 
-                        List<string> toBeRemovedObject = new List<string> ();
+						List<object> nearMe = resp.Data.GetAs<List<object>>("data");
+						List<object> nearNodes = resp.Data.GetAs<List<object>>("nodes");
+						//List<object> nearMe = (List<object>)resp.GetIncomingDictionary () ["data"];
+						//List<object> nearNodes = (List<object>)resp.GetIncomingDictionary()["nodes"];
+
+						List<string> toBeRemovedObject = new List<string> ();
 						foreach (KeyValuePair<string, BasicFeature> spawnedPair in spawnedFeatures) {
 							bool stillPresent = false;
 							foreach (object _entry in nearMe) {

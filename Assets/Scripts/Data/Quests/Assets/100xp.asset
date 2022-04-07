@@ -18,12 +18,12 @@ MonoBehaviour:
   QuestCompletionText: 
   SpawnChance: 1
   Rewards:
-  - rewardType: 0
+  - rewardType: 1
     reward: xp
     amount: 100
   Objectives:
   - ObjectiveTrigger: item_used
-    ObjectiveTriggerData: 6ed4b8ff-aad3-41f0-a192-82b112d22bb1
+    ObjectiveTriggerData: consumale_apple
     ObjectiveText: Mangia una mela
     ObjectiveProgress: 1
   Repeatable: 0

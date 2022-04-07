@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed70e5b21a17084096244569558acb1, type: 3}
   m_Name: Npc_Bugbear
   m_EditorClassIdentifier: 
+  UID: 
   FeatureName: npc_bugbear
   FeatureType: npc
   extraData: Beast,Undead
   isCraftingStation: 0
   isEncounter: 1
+  isNode: 0
   Rarity: 157
   minGoldDrop: 0
   maxGoldDrop: 0
   minItemDrops: 0
   maxItemDrops: 0
+  OnMapFeature: {fileID: 0}
   possibleItems: []

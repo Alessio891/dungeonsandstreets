@@ -59,7 +59,7 @@ public class UIInventoryDetails : MonoBehaviour {
             int damage = 0;
             int hit = 0;
             int crit = 0;
-            Debug.Log("Item " + item.Name + " data " + data);
+            Debug.Log("Item " + item.Name + " data " + data.ToString());
             int.TryParse(data["Damage"].ToString(), out damage);
             int.TryParse(data["HitChance"].ToString(), out hit);
             int.TryParse(data["CritChance"].ToString(), out crit);            
@@ -70,7 +70,7 @@ public class UIInventoryDetails : MonoBehaviour {
             dmgTypeText.text = "Normal";
             string elem = data["DamageType"].ToString();            
             elementText.text = char.ToUpper(elem[0]) + elem.Substring(1);
-            refinedText.text = "x"+data["currentRefine"].ToString();
+           // refinedText.text = "x"+data["currentRefine"].ToString();
 
             currentItemUID = data["UID"].ToString();
 

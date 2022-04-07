@@ -15,6 +15,8 @@ public class BaseEnemy : MonoBehaviour {
     public AudioClip GetHitSound;
     public AudioClip DieSound;
 
+	public System.Action OnDeath;
+
     public int index = 0;
 
 	// Use this for initialization
@@ -92,7 +94,8 @@ public class BaseEnemy : MonoBehaviour {
 
     public void Die()
     {
-
+		if (OnDeath != null)
+			OnDeath();
         StartCoroutine(fadeOut());
     }
 

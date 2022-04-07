@@ -24,8 +24,6 @@ MonoBehaviour:
   Level: 2
   XP: 15
   elementalData: []
-  Drops:
-  - item: {fileID: 11400000, guid: 2666a5b591f14dd42933924925721d55, type: 2}
-    weight: 200
+  Drops: []
   minGold: 10
   maxGold: 500

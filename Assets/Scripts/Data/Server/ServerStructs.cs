@@ -6,6 +6,7 @@ using UnityEngine;
  { status: "error", "message": "Errore", incomingData: { blabla: "blublu" } }
  * */
 using System.Linq;
+using System;
 
 [System.Serializable]
 public class PlayerDataStruct  {
@@ -30,15 +31,18 @@ public class ServerResponse
 
 	public Dictionary<string, object> rawData;
 
+	[Obsolete("This method should be replaced with the IncomingData data structure")]
 	public Dictionary<string, object> GetIncomingDictionary()
 	{
 		return (Dictionary<string, object>)incomingData;
 	}
-
+	[Obsolete("This method should be deleted, the server will be updated as to not respond with a list anymore")]
 	public List<Dictionary<string, object>> GetIncomingList()
 	{
 		return (List<Dictionary<string, object>>)incomingData;
 	}
+
+	public IncomingData Data;
 
 	public ServerResponse(string rawResponse)
 	{
@@ -72,6 +76,7 @@ public class ServerResponse
             }
             else
             {
+				Data = new IncomingData(rawData["incomingData"]);
                 try
                 {
                     incomingData = (Dictionary<string, object>)rawData["incomingData"];
@@ -83,7 +88,44 @@ public class ServerResponse
 		}
 	
 	}		
+}
 
+public class IncomingData
+{
+	Dictionary<string, object> Data = new Dictionary<string, object>();
+
+	public string this[string key]
+    {
+		get
+        {
+			if (Data.ContainsKey(key))
+				return Data[key].ToString();
+			else
+				return "N\\A";
+        }
+    }
+
+	public int GetInt(string key)
+    {
+		string value = this[key];
+		int retVal = 0;
+		if (int.TryParse(value, out retVal))
+			return retVal;
+		Debug.LogError("[Tried to parse " + value + " as int. Returning -1.");
+		return -1;
+    }
+
+	public T GetAs<T>(string key)
+    {
+		T retVal = (T)Data[key];
+
+		return retVal;
+    }
+
+	public IncomingData(object incomingData)
+    {
+		Data = (Dictionary<string, object>)incomingData;
+    }
 }
 
 

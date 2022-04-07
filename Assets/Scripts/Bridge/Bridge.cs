@@ -8,77 +8,6 @@ public static class Bridge {
 
     public static bool DebugMode = true;
 
-
-    public class Data
-	{
-		public enum Result
-		{
-			Success = 0,
-			Error
-		};
-
-		public Result result;
-
-		public string raw;
-		public string rawMessage;
-		public string errorCode;
-		public const string Separator = "###";
-		public List<Dictionary<string, string>> values;
-
-
-		public Data()
-		{}
-
-		public void ParseMapResponse(string response)
-		{
-			
-			values = new List<Dictionary<string, string>> ();
-			string[] lines = response.Split (new string[] { "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
-			if (lines.Length <= 1)
-				return;
-			int count = -1;
-			for (int i = 1; i < lines.Length; i++) {
-			//	Debug.Log ("Process line " + lines [i]);
-				if (lines[i].StartsWith("[0]")) {//!lines [i].StartsWith ("[" + count.ToString () + "]")) {
-					count++;
-					Dictionary<string, string> v = new Dictionary<string, string> ();
-					string raw = lines [i].Split (']') [1].Trim ();
-					string[] rawSplit = raw.Split (new string[] { Separator }, System.StringSplitOptions.RemoveEmptyEntries);
-					if (rawSplit.Length <= 1) {
-						Debug.Log ("Couldnt split for - :( [ " + raw + " ]");
-						continue;
-					}
-					v.Add (rawSplit [0].Trim (), rawSplit [1].Trim ());
-					values.Add (v);
-				} else {										
-					string raw = lines [i].Split (']') [1].Trim ();
-					string[] rawSplit = raw.Split (new string[] { Separator }, System.StringSplitOptions.RemoveEmptyEntries);
-					if (rawSplit.Length <= 1) {
-						Debug.Log ("Couldnt split for - :(");
-						continue;
-					}
-					values[count].Add (rawSplit [0].Trim (), rawSplit [1].Trim ());
-				}
-
-			}
-		}
-
-
-		public Data(string response)
-		{
-			if (response.StartsWith("[Success]"))
-			{
-				result = Result.Success;
-			} else
-			{
-				result = Result.Error;
-			}
-			rawMessage = response.Split(']')[1];
-			raw = response;
-		}
-
-	}
-
 	static RoutineRunner _rr;
 
 #if UNITY_EDITOR
@@ -138,7 +67,9 @@ public static class Bridge {
 			resp = "{\"status\":\"error\", \"errorCode\":\"0\", \"message\":\""+www.error+"\"}";
 		}
 		if (callback != null)
-			callback (resp);		
+			callback (resp);
+
+		Debug.Log("[GET REQUEST] " + url);
 		routinesRunning--;
 	}
 
@@ -252,8 +183,4 @@ public static class Bridge {
 		GET (url + "DownloadItem?uid=" + item.ItemID, callback);
 	}
 
-	public static Data ParseResponse(string response)
-	{
-		return new Data(response);
-	}
 }

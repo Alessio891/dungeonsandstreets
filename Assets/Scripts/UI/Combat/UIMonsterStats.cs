@@ -20,5 +20,12 @@ public class UIMonsterStats : MonoBehaviour
     {
         target = enemy;
         MonsterName.text = Name;
+        enemy.OnDeath += EnemyDead;
+    }
+
+    void EnemyDead()
+    {
+        target.OnDeath -= EnemyDead;
+        Destroy(gameObject);
     }
 }
