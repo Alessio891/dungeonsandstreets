@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2d34fb67205d648b03ed7029d7d2bb, type: 3}
+  m_Name: Rage
+  m_EditorClassIdentifier: 
+  ID: combat_rage
+  Name: Rage
+  Levels:
+  - ID: Level_0
+    Skills:
+    - ID: demoralize
+      Name: Demoralize
+      Description: Reduces damage done by the enemy target by 5%
+      SlotIndex: 0
+      sprite: {fileID: 21300000, guid: afe256e62a720dd409aef818d0c2b9ad, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+    - ID: raging_blow
+      Name: Raging Blow
+      Description: A blind raging blow with reduced hit chance but increased critical
+        chance
+      SlotIndex: 1
+      sprite: {fileID: 21300000, guid: f069a47583ae91d4ca9e02c2b87aa78e, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+    - ID: out_maneuver
+      Name: Natural Armor
+      Description: Your skin hardens acting as a natural armor. You gain 10 armor
+        rating.
+      SlotIndex: 2
+      sprite: {fileID: 21300000, guid: be3ad4cc81a554e4688e59898944c9d8, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+  - ID: Level_1
+    Skills:
+    - ID: cleave
+      Name: Cleave
+      Description: You swing your weapon hitting multiple enemies
+      SlotIndex: 1
+      sprite: {fileID: 21300000, guid: e5ad0edb937de354288ea9b2cf391819, type: 3}
+      Requirements:
+        Talent: Level_0:raging_blow
+        Stat: None:0
+        PlayerLevel: 3
+      MaxPoints: 1
+    - ID: deflect
+      Name: Deflect
+      Description: You gain a 10% chance to dodge physical attacks
+      SlotIndex: 2
+      sprite: {fileID: 21300000, guid: daf8e6a8f3481404a846da0715477ef3, type: 3}
+      Requirements:
+        Talent: Level_0:out_maneuver
+        Stat: None:0
+        PlayerLevel: 3
+      MaxPoints: 1
+  - ID: Level_2
+    Skills:
+    - ID: deep_wound
+      Name: Deep Wound
+      Description: You inflict a deep wound on your foe, making him bleed for 5 damage
+        each turn for the next 3 turns
+      SlotIndex: 0
+      sprite: {fileID: 21300000, guid: 866559af534bbbc4399c89f600c4843a, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None:0
+        PlayerLevel: 10
+      MaxPoints: 1
+    - ID: earth_slam
+      Name: Earth Slam
+      Description: You slam the ground making the ground rumble and split open under
+        the enemies, dealing massive damage to each of them
+      SlotIndex: 1
+      sprite: {fileID: 21300000, guid: 8686ccad0de28ff49b86409b11822795, type: 3}
+      Requirements:
+        Talent: Level_1:cleave
+        Stat: None:0
+        PlayerLevel: 20
+      MaxPoints: 1
+    - ID: spike_skin
+      Name: Spike Skin
+      Description: The next enemy that hits you with physical attacks will suffer
+        30% of the damage done back
+      SlotIndex: 2
+      sprite: {fileID: 21300000, guid: 664282a80fc98774d94ed3efaabac0d8, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None:0
+        PlayerLevel: 30
+      MaxPoints: 1
+  - ID: Level_3
+    Skills:
+    - ID: execution
+      Name: Execution
+      Description: You attempt to put an end to the life of your target. You deal
+        massive damage with a small chance (depending on the target's remaining life)
+        to kill it instantly.
+      SlotIndex: 1
+      sprite: {fileID: 21300000, guid: 9e2d9e307e903314e8857970de41a335, type: 3}
+      Requirements:
+        Talent: Level_2:earth_slam
+        Stat: None:0
+        PlayerLevel: 30
+      MaxPoints: 1

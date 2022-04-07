@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2d34fb67205d648b03ed7029d7d2bb, type: 3}
+  m_Name: Destruction
+  m_EditorClassIdentifier: 
+  ID: magic_destruction
+  Name: Destruction
+  Levels:
+  - ID: Level_0
+    Skills:
+    - ID: firebolt
+      Name: Firebolt
+      Description: Hurls a bolt of fire to the target, dealing 3-10 fire damage
+      SlotIndex: 0
+      sprite: {fileID: 21300000, guid: 0a7db653489cf2f42942ccfd384b137e, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None
+        PlayerLevel: -1
+      MaxPoints: 1
+    - ID: electric_shock
+      Name: Electric Shock
+      Description: Shock the target, dealing 1-4 electric damage and reducing his
+        hit chance by 5%
+      SlotIndex: 1
+      sprite: {fileID: 21300000, guid: 4ec47f2dd42367c48be0e0ff0d05eeaf, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None
+        PlayerLevel: -1
+      MaxPoints: 1
+    - ID: chill
+      Name: Chill
+      Description: Chills the target, dealing 3-5 ice damage and reducing target's
+        dexterity by 2.
+      SlotIndex: 2
+      sprite: {fileID: 21300000, guid: d81ffd4b26991474dbf110d9d76033fa, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None
+        PlayerLevel: -1
+      MaxPoints: 1
+  - ID: Level_1
+    Skills:
+    - ID: flame_thrower
+      Name: Flame Thrower
+      Description: Emits a cone of fire that envelopes the enemies in fire, dealing
+        5-10 damage to all enemies.
+      SlotIndex: 0
+      sprite: {fileID: 21300000, guid: e1cda1e9b9c7ba04bad81c0aa4a774db, type: 3}
+      Requirements:
+        Talent: Level_0:firebolt
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+  - ID: Level_2
+    Skills:
+    - ID: thunderstorm
+      Name: Thunderstorm
+      Description: For the next three turns, a lightning strucks a random enemy for
+        6-12 electric damage
+      SlotIndex: 1
+      sprite: {fileID: 21300000, guid: b40bce1b71075b84a98c151acdc2e6c9, type: 3}
+      Requirements:
+        Talent: Level_0:electric_shock
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+    - ID: deepfreeze
+      Name: Deepfreeze
+      Description: Freezes the target, dealing 5-10 ice damage for two turns.
+      SlotIndex: 2
+      sprite: {fileID: 21300000, guid: 6769f02f510731e428772b3c154e213d, type: 3}
+      Requirements:
+        Talent: Level_0:chill
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+  - ID: Level_3
+    Skills:
+    - ID: hell_fire
+      Name: Hell Fire
+      Description: Fire sprouts from the ground, dealing 10-25 fire damage to all
+        enemies
+      SlotIndex: 0
+      sprite: {fileID: 21300000, guid: 06f8cd132eb93fe4ebaf2a6ce73d70e1, type: 3}
+      Requirements:
+        Talent: Level_1:flame_thrower
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+    - ID: hailstorm
+      Name: Hailstorm
+      Description: A storm unleashes upon your enemis, decreasing their hit chance
+        by 15% and dealing 10-15 ice damage every turn for 4 turns
+      SlotIndex: 2
+      sprite: {fileID: 21300000, guid: 7f955580f7d3f7b49b6e7c9bdd865659, type: 3}
+      Requirements:
+        Talent: Level_2:deepfreeze
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1

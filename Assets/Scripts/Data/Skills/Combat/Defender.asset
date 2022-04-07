@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2d34fb67205d648b03ed7029d7d2bb, type: 3}
+  m_Name: Defender
+  m_EditorClassIdentifier: 
+  ID: combat_defender
+  Name: Defender
+  Levels:
+  - ID: Level_0
+    Skills:
+    - ID: provoke
+      Name: Provoke
+      Description: Provoke the target, forcing his next attack on you
+      SlotIndex: 0
+      sprite: {fileID: 21300000, guid: b9cbbd7fa3094e34c936d86aa8dbf720, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+    - ID: counter
+      Name: Counter
+      Description: Assume a defencing stance for this turn, decreasing damage taken.
+        If you are attacked next turn, you will automatically counter attack.
+      SlotIndex: 1
+      sprite: {fileID: 21300000, guid: cb8c9b85f32734a44b78e1acee853043, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+    - ID: iron_will
+      Name: Iron Will
+      Description: Reduces the chance of being stunned
+      SlotIndex: 2
+      sprite: {fileID: 21300000, guid: 67fa2d16b8a1ea64cb2466516b515a35, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+  - ID: Level_1
+    Skills:
+    - ID: intercept
+      Name: Intercept
+      Description: For the next two turns, you intercept any attack done to other
+        party members, taking the damage in their place.
+      SlotIndex: 0
+      sprite: {fileID: 21300000, guid: 527175927f7295d4f86311c1e29e15f5, type: 3}
+      Requirements:
+        Talent: Level_0:provoke
+        Stat: None:0
+        PlayerLevel: 3
+      MaxPoints: 1
+    - ID: shield_mastery
+      Name: Shield Mastery
+      Description: Increases your maximum hp by 1 for every 2 points of armor rating
+        of your shield
+      SlotIndex: 2
+      sprite: {fileID: 21300000, guid: eefdb15d142ca8147b2172ec938ac7b9, type: 3}
+      Requirements:
+        Talent: Level_0:iron_will
+        Stat: None:0
+        PlayerLevel: 3
+      MaxPoints: 1
+    - ID: shield_bash
+      Name: Shield Bash
+      Description: Bash the target with your shield. Damage is increased by shield
+        armor rating.
+      SlotIndex: 1
+      sprite: {fileID: 21300000, guid: b954119d04a9f6d469884d7820e2139a, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+  - ID: Level_2
+    Skills:
+    - ID: mass_taunt
+      Name: Mass Taunt
+      Description: Taunt all enemies, reducing their armor rating by 10 and forcing
+        them to attack you in the next turn
+      SlotIndex: 0
+      sprite: {fileID: 21300000, guid: 6adf5d5146a592f498c22d4fc02a502d, type: 3}
+      Requirements:
+        Talent: 
+        Stat: None:0
+        PlayerLevel: 10
+      MaxPoints: 1
+    - ID: full_defense
+      Name: Full Defense
+      Description: All your armor rating sources are increased by 20%
+      SlotIndex: 2
+      sprite: {fileID: 21300000, guid: 401901f622b754d49bf46584b8461fc6, type: 3}
+      Requirements:
+        Talent: Level_1:shield_mastery
+        Stat: None:0
+        PlayerLevel: -1
+      MaxPoints: 1
+  - ID: Level_3
+    Skills:
+    - ID: shield_wall
+      Name: Shield Wall
+      Description: You cover your party with your shield, all damage they take while
+        shielded is reduced by 50%
+      SlotIndex: 2
+      sprite: {fileID: 21300000, guid: 0ca1ba32cde62f445947123d4457a5b8, type: 3}
+      Requirements:
+        Talent: Level_2:full_defense
+        Stat: None:0
+        PlayerLevel: 30
+      MaxPoints: 1
